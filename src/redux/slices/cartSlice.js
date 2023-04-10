@@ -61,7 +61,7 @@ const cartSlice = createSlice({
       ); 
       state.totalQuantity--
       if(existingItem.quantity <= 1){
-        // if (window.confirm('Bạn có chắc muốn xóa')) {
+        if (window.confirm('Bạn có chắc muốn xóa')) {
           
         // alert('Bạn có chắc muốn xóa')
           if(existingItem){
@@ -71,7 +71,7 @@ const cartSlice = createSlice({
       
           state.totalAmount = state.cartItems.reduce((total, item)=> total+
             Number(item.price)*Number(item.quantity),0);
-        // }
+        }
         // console.log("xoa san pham")
       }else{
         existingItem.quantity--;
