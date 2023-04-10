@@ -1,0 +1,17 @@
+
+.auth_form.forgot {
+    width: 30%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px; 
+    border-radius: 5px;
+}
+
+.forgot__btn {
+    background-color: #1d3557;
+    color: #fff; 
+    font-weight: 500;
+    padding: 15px;
+}

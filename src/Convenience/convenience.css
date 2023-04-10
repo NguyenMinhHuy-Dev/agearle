@@ -1,0 +1,40 @@
+.about__convenience{
+    color: #1d3557;
+}
+.about__items svg{
+    color: #8fb0df;
+    font-size: 4rem;
+    /* padding-bottom: 10px; */
+}
+.about__items h1{
+    color: #1d3557;
+    text-align: center;
+    height: 40px;
+}
+.about__items{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-items: center;
+}
+.about__text{
+    padding-bottom: 30px;
+}
+.about__convenience_title{
+    padding-bottom: 50px;
+    text-align: center;
+    font-size: 2rem;
+    color:#1d3557;
+}
+@media only screen and (max-width: 768px) {
+    .about__items h1{
+        font-size: 1rem;
+    }
+    .about__items svg{
+        font-size: 2rem;
+    }
+    .about__convenience_title{
+        font-size: 1.4rem;
+    }
+}

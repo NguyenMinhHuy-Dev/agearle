@@ -1,0 +1,134 @@
+.showroom{
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+}
+.location_text h3{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #cf5e5e;
+    color: #353c4e;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+.location_text p{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+/* ------------------------------ */
+.wrapper__about{
+    background-color: antiquewhite;
+    background-size: contain;
+}
+.wrapper__about img{
+    width: 50%;
+}
+.wrapper__about h1{
+    letter-spacing: 15px;
+    text-align: center;
+}
+.wrapper__about h6{
+  margin-bottom: 20px;
+}
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+.wrapper__about svg.wrapper__about__svg {
+    display: block;
+    font: 10.5em 'Montserrat';
+    width: 300px;
+    /* height: 300px; */
+    margin: 0 auto;
+}
+
+.wrapper__about .text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.wrapper__about .text-copy:nth-child(1){
+  stroke: #4D163D;
+  animation-delay: -1;
+}
+
+.wrapper__about .text-copy:nth-child(2){
+  stroke: #840037;
+  animation-delay: -2s;
+}
+
+.wrapper__about .text-copy:nth-child(3){
+  stroke: #BD0034;
+  animation-delay: -3s;
+}
+
+.wrapper__about .text-copy:nth-child(4){
+  stroke: #BD0034;
+  animation-delay: -4s;
+}
+
+.wrapper__about .text-copy:nth-child(5){
+  stroke: #FDB731;
+  animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+  100% {stroke-dashoffset: -35%;}
+}
+
+/* ---------------------------------------------- */
+.wrapper__about .contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+}
+.wrapper__about .contact span{
+  padding: 0;
+  font-size: .5rem;
+}
+.wrapper__about .contact svg{
+  padding: 10px;
+  width: 3rem;
+  color:#1d3557;
+}
+.contact h5{
+  color:#1d3557;
+}
+.container_slide{
+  width: 500px;
+  height: 380px;
+  margin-top: 80px;
+}
+iframe {
+  border: 0;
+  width: 400px;
+  height: 300px
+}
+@media only screen and (max-width: 768px) {
+  .contact h5{
+    font-size: .5rem;
+  }
+  .wrapper__about .contact svg{
+    width: 1rem;
+  }
+}
+@media only screen and (max-width: 426px) {
+  .container_slide{
+    width: 380px;
+    height: 280px;
+  }
+  iframe{
+    width:350px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .container_slide{
+    width: 290px;
+    height: 280px;
+  }
+  .location_text iframe{
+    width:300px;
+  }
+}

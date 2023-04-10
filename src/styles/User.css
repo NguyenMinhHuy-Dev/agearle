@@ -1,0 +1,109 @@
+.wrapper__user{
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%,-50%); */
+    width: 100%;
+    display: flex;
+    box-shadow: 0 1px 20px 0 rgba(69,90,100,.08);
+  }
+  
+  .wrapper__user .left{
+    width: 35%;
+    background: linear-gradient(to right,#6d92c5,#ca75de);
+    padding: 30px 25px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+  }
+  
+  .wrapper__user .left img{
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  /* .wrapper__user .left h4{
+    margin-bottom: 10px;
+  } */
+  
+  .wrapper__user .left p{
+    font-size: 2rem;
+  }
+  
+  .wrapper__user .right{
+    width: 65%;
+    background: #fff;
+    padding: 30px 25px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .wrapper__user .right .info,
+  .wrapper__user .right .projects{
+    margin-bottom: 25px;
+  }
+  
+  .wrapper__user .right .info h2,
+  .wrapper__user .right .projects h2{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #353c4e;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
+  
+  .wrapper__user .right .info_data,
+  .wrapper__user .right .projects_data{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .wrapper__user .right .info_data .data,
+  .wrapper__user .right .projects_data .data{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+  }
+  
+  .wrapper__user .right .info_data .data h3,
+  .wrapper__user .right .projects_data .data h3{
+      color: #353c4e;
+      /* margin-bottom: 5px; */
+  }
+  
+  .wrapper__user .right .info_data .data p,
+  .wrapper__user .right .projects_data .data p{
+    font-size: 1.2rem;
+    /* margin-bottom: 10px; */
+    color: #919aa3;
+  }
+  
+  .wrapper__user .social_media ul{
+    display: flex;
+  }
+  
+  .wrapper__user .social_media ul li{
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(to right,#01a9ac,#01dbdf);
+    margin-right: 10px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 45px;
+  }
+  
+  .wrapper__user .social_media ul li a{
+    color :#fff;
+    display: block;
+    font-size: 18px;
+  }

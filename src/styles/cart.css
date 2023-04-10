@@ -1,0 +1,42 @@
+
+.white{
+    color: #fff !important; 
+}
+.text-underline {
+    text-decoration: none;
+}
+/* .table th{
+    padding: 20px 0
+} */
+.table tr td img {
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: contain;
+}
+.button__quantity{
+    width: .7rem;
+    height: .7rem;
+    border-radius: 0;
+}
+.table td .cart_delicon {
+    cursor: pointer;
+}
+.format__quantity{
+    width: 30px;
+}
+.format__quantity input{
+    text-align: center;
+}
+button.button__quantity svg{
+    width: .6em;
+    height: .6em;
+}
+@media only screen and ( max-width: 426px) {
+    button.button__quantity svg{
+        width: .2em;
+        height: .2em;
+    }
+    .format__quantity{
+        width: 10px;
+    }
+}

@@ -1,0 +1,115 @@
+.hero__section{
+    background-image: url(../../src/assets/img/Home-2.png);
+    background-size:cover;
+}
+
+.hero__section p:nth-child(1){
+    font-weight: 500;
+}
+.buy__btn{
+    border: none;
+    outline: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    background-color: #1d3557;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 30px;
+    text-decoration-line: none;
+}
+.buy__btn a:hover{
+    color: #fff;
+}
+.hero__content{
+    padding-top: 45px;
+}
+.hero__content h2{
+    color:black;
+    font-size: 3.2rem;
+    font-weight: 600;
+    margin: 20px 0px;
+    line-height: 1.25;
+    
+}
+.hero__content p{
+    color: black;
+    line-height: 28px;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-spacing: -0.05em;
+}
+.hero__img{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.hero__img img{
+    width: 60%;
+    padding-top:30px;
+}
+/*--------------------------------------------------------------------------------*/
+.section__title{
+    color: #1d3557;
+    font-weight: 600;
+
+}
+/* --------------------------------------------------------------------- */
+.timer__count{
+    background: #1d3557;
+    height: 220px;
+}
+.timer__count img{
+    width: 70% !important;
+    height: 70% !important;
+    object-fit: contain;
+}
+.clock__top-content h4{
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+.clock__top-content h3{
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+.store__btn {
+    background: #fff;
+    color: #1d3557;
+    font-weight: 600;
+}
+.store__btn a{
+    text-decoration-line: none;
+}
+.store__btn a:hover{
+    color:darkorange;
+}
+
+
+@media only screen and (max-width: 992px){
+    .hero__content h2{
+        font-size: 1.2rem;
+    }
+    .hero__section{
+        background-size:auto;
+    }
+    .clock__top-content h4{
+        font-size: small;
+    }
+    .clock__top-content h3{
+        font-size:larger;
+    }
+}
+@media only screen and (max-width: 512px){
+    .timer__count img{
+        display: none;
+    }
+    .clock__top-content h4{
+        font-size: 0.7rem;
+    }
+    .clock__top-content h3{
+        font-size:0.9rem;
+    }
+}

@@ -1,0 +1,24 @@
+.clock__wrapper,
+.clock__data{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.clock__wrapper h1, span{
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 0.2rem;
+}
+.clock__wrapper h5{
+    font-size: 1.4rem;
+    color: white;
+}
+
+@media only screen and (max-width: 992px){
+    .clock__data h1{
+        font-size: 1.2rem;
+    }
+    .clock__data h5{
+        font-size: 1rem;
+    }
+}

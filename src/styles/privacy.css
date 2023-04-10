@@ -1,0 +1,223 @@
+.wrapper__privacy{
+    background-image: url(../../src/assets/img/privacy_3.png);
+    background-size: cover;
+}
+.wrapper__privacy svg{
+    color:#1d3557;
+}
+/* ---------------------------------------------- */
+/* text */
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+.content {
+  position: flex;
+  display:flex;
+  height: 230px
+}
+
+.content h2 {
+  color: #fff;
+  font-size: 7rem;
+  position: absolute;
+  /* transform: translate(0%, 0%); */
+}
+
+.content h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 2px #5e60ce;
+}
+
+.content h2:nth-child(2) {
+  color: #5e60ce;
+  animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      16% 44%,
+      33% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  50% {
+    clip-path: polygon(
+      0% 60%,
+      15% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+/* --------------------end text------------------- */
+.payment__section h1{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #5ee4d6;
+    color: #353c4e;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-shadow: -3px 1px #5ee4d6;
+}
+.payment_box_container{
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    padding:30px;
+    border-radius: 10px;
+}
+.payment_box_container h5{
+    padding-top: 10px;
+    font-weight: 200;
+    height: 50px;
+}
+.payment_box{
+    display:flex;
+    align-items: center;
+    /* padding-bottom: 3px; */
+    justify-content: space-around;
+    border-bottom: 2px solid #5ee4d6;
+    gap:10px;
+}
+.payment_box h4{
+    font-size: 2rem;
+    font-weight: 600;
+    height: 100px;
+    color:#51ded0;
+} 
+.payment_box img{
+    width: 20%;
+    height: 100%;
+}
+/* -------------------------------------------- */
+@media only screen and (max-width: 425px) {
+    .content h2 {
+        font-size: 5rem;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .payment_box h4{
+        height: 150px;
+    } 
+}
+/* ---------------------- */
+.warranty__section h1{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #fde2e4;
+    color: #353c4e;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-shadow: -3px 1px #fde2e4;
+}
+.warranty_box_container{
+    border: 2px solid #febdc1;
+    border-bottom-right-radius: 20px ;
+    border-top-left-radius: 20px ;
+    padding: 30px;
+}
+.warranty_box h4{
+    font-size: 2rem;
+    font-weight: 600;
+    border-bottom: 2px solid #febdc1;
+    width: fit-content;
+    padding: 10px;
+    color: #febdc1;
+    margin-bottom: 20px;
+}
+
+.warranty_box_container ul{
+    padding-left: 10px;
+    list-style-type: circle;
+    color:#1d3557;
+    height: 100px;
+}
+.warranty_box_container li::marker{
+    color:#febdc1;
+}
+/* -------------------------------------------- */
+.inPayment__section h1{
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #dfe7fd;
+    color: #353c4e;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-shadow: -3px 1px #dfe7fd;
+}
+.inPayment_box_container ul{
+    padding-left: 10px;
+    list-style-type: circle;
+    color:#1d3557;
+    height: 140px;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-spacing: -0.05em;
+}
+.inPayment_box_container li::marker{
+    color:#dfe7fd;
+}
+.inPayment_box_container{
+    border: 2px solid #dfe7fd;
+    border-bottom-right-radius: 20px ;
+    border-top-left-radius: 20px ;
+    padding: 30px;
+}
+.inPayment_box h4{
+    font-size: 2rem;
+    font-weight: 600;
+    width: fit-content;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    border-bottom: 2px solid #dfe7fd;
+    color: #dfe7fd;
+}
+@media only screen and (max-width: 426px) {
+    .inPayment_box_container ul{
+        font-size: 0.8rem;
+    }
+    .warranty_box_container ul{
+        font-size: 0.8rem;
+    }
+    .payment_box_container h5{
+        padding-top: 10px;
+        font-weight: 200;
+        height: 50px;
+    }
+    .payment_box_container h5{
+        font-size: 0.8rem;
+    }
+    .payment_box h4{
+        font-size: 1.5rem;
+    }
+    .warranty__conditions ul{
+        font-size: .8rem;
+    }
+    .inPayment__conditions ul{
+        font-size: .8rem;
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    .inPayment_box_container ul{
+        font-size: 0.7rem;
+    }
+    .warranty_box_container ul{
+        font-size: 0.7rem;
+    }
+    .payment_box_container h5{
+        font-size: 0.6rem;
+    }
+  }

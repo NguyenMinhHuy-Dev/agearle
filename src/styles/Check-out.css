@@ -1,0 +1,38 @@
+.checkout__form .form__group input {
+    width: 100%;
+    padding: 10px;
+}
+
+.checkout__cart {
+    padding: 20px;
+    background: #1d3557;
+    color: #fff;
+    border-radius: 5px;
+    margin-left: 40px;
+}
+
+.checkout__cart h6,h4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.checkout__cart h6{
+    font-size: 16px;
+}
+.checkout__cart h6 {
+    margin-bottom: 20px;
+}
+.checkout__cart h4 {
+    border-top: 1px solid rgba(221, 221, 221, 0.253);
+    padding-top: 20px;
+}
+.checkout__cart button {
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 5px;
+}
+@media only screen and (max-width: 768px){
+    .checkout__cart {
+        margin-left: 0px;
+    }
+}
