@@ -61,14 +61,17 @@ const cartSlice = createSlice({
       ); 
       state.totalQuantity--
       if(existingItem.quantity <= 1){
-        alert('Bạn có chắc muốn xóa')
-        if(existingItem){
-          state.cartItems = state.cartItems.filter(item=> item.id !== removeItem.id)
-          state.totalQuantity = state.totalQuantity - existingItem.quantity + 1
-        }
-    
-        state.totalAmount = state.cartItems.reduce((total, item)=> total+
-          Number(item.price)*Number(item.quantity),0);
+        // if (window.confirm('Bạn có chắc muốn xóa')) {
+          
+        // alert('Bạn có chắc muốn xóa')
+          if(existingItem){
+            state.cartItems = state.cartItems.filter(item=> item.id !== removeItem.id)
+            state.totalQuantity = state.totalQuantity - existingItem.quantity + 1
+          }
+      
+          state.totalAmount = state.cartItems.reduce((total, item)=> total+
+            Number(item.price)*Number(item.quantity),0);
+        // }
         // console.log("xoa san pham")
       }else{
         existingItem.quantity--;

@@ -107,3 +107,9 @@
     display: block;
     font-size: 18px;
   }
+
+ .info .info_data .data p.button_logout {
+    cursor: pointer;
+    font-weight: bold;
+    color:#01a9ac;
+  }

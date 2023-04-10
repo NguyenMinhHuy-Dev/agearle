@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Helmet from '../components/Helmet/Helmet'
 import { Container, Grid } from '@mui/material';
 import '../styles/about.css'
@@ -21,6 +21,10 @@ const About = () => {
     { url: "https://c8n8e4j6.rocketcdn.me/wp-content/uploads/2021/01/gearvn-khai-truong-showroom-hi-end-pc-va-gaming-gear-ngay-tai-trung-tam-thanh-pho-ho-chi-minh-19.jpg", title: "sr2" },
     { url: "https://thoisutoancanh.com/upload/crawler/gearvn-khai-truong-showroom-hi-end-pc-va-gaming-gear-tai-quan-1-thanh-pho-ho-chi-minh-1611214709-3.jpg", title: "sr3" },
   ];
+
+  useEffect(()=>{
+    window.scrollTo({top: 0, left: 0, behavior: "smooth"})
+  })
 
   return (
     <>

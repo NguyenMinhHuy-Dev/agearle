@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/User.css'
 import ava from '../assets/img/profile.png';
 import Helmet from '../components/Helmet/Helmet';
 import { Container} from '@mui/material';
+import useAuth from '../custom-hooks/useAuth';
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { auth, db } from '../config/firebase';
+import { toast } from 'react-toastify';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+
 const User = () => {
+  const { currentUser } = useAuth();   
+
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    signOut(auth);
+    navigate('/login');
+    sessionStorage.clear();
+  }
+
   return (
     <>
     <Helmet title='User'></Helmet>
@@ -11,9 +28,9 @@ const User = () => {
     <Container>
     <div class="wrapper__user">
         <div class="left">
-            <img src={ava} alt="user" width="100"/>
-              <h4>Alex William</h4>
-              <p>UI Developer</p>
+            <img src={currentUser.photoURL} alt="user" width="100"/>
+              <h4>{currentUser.displayName}</h4>
+              <p>Customer</p>
         </div>
         <div class="right">
             <div class="info">
@@ -21,15 +38,15 @@ const User = () => {
                 <div class="info_data">
                     <div class="data">
                         <h3>Name</h3>
-                        <p>Anh</p>
+                        <p>{currentUser.displayName}</p>
                     </div>
                     <div class="data">
                       <h3>Email</h3>
-                        <p>anhpham@gmail.com</p>
+                        <p>{currentUser.email}</p>
                     </div>
                     <div class="data">
                       <h3>Phone</h3>
-                        <p>0001-213-998761</p>
+                        <p>{sessionStorage.getItem("phoneNumber")}</p>
                     </div>
                     <div class="data">
                       <h3>Password</h3>
@@ -37,11 +54,11 @@ const User = () => {
                     </div>
                     <div class="data">
                       <h3>Address</h3>
-                        <p>Thành Phố Hồ Chí Minh</p>
+                        <p>{sessionStorage.getItem("address")}</p>
                     </div>
                     <div class="data">
-                      <h3>Birthday</h3>
-                        <p>23-11-2002</p>
+                      <h3></h3>
+                        <p onClick={handleLogOut} className='button_logout'>Log out</p>
                     </div>
                 </div>
             </div>

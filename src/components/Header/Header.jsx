@@ -12,6 +12,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 //tram them
 import { useSelector } from 'react-redux';
+import useAuth from '../../custom-hooks/useAuth';
 
 const nav__link = [
   {
@@ -32,7 +33,9 @@ const nav__link = [
   },
 ]
 
-const Header = () => {
+const Header = () => { 
+  const { currentUser } = useAuth();
+
   const menuRef = useRef();
   const headerRef = useRef(null);
   //
@@ -101,11 +104,12 @@ const Header = () => {
                     <span className="badge">{totalQuantity}</span>
                   </span>
                   </NavLink>
+ 
                   <NavLink to='/login'>
-                  <span>
-                    <motion.img whileTap={{scale:1.2}} src={userIcon} alt=''/>
-                  </span>
-                  </NavLink>
+                    <span>
+                      <motion.img whileTap={{scale:1.2}} src={currentUser ? currentUser.photoURL : userIcon} alt=''/>
+                    </span>
+                  </NavLink>  
 
                   <div className="mobile_menu">
                   <span className='mobile_menu__icon' onClick={menuToggle}><MenuIcon/></span>

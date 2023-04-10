@@ -78,6 +78,7 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    border-radius: 50%;
 }
 .mobile__menu{
     font-size: 1.3rem;

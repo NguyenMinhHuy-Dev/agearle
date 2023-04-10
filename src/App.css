@@ -1,7 +1,9 @@
 *{
   padding:0;
   margin: 0;
+    scroll-behavior: smooth;
 }
+
 
 section{
   padding: 60px 0px;

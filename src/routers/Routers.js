@@ -11,6 +11,7 @@ import About from '../pages/About'
 import ForgotPassword from '../pages/ForgotPassword'
 import User from '../pages/User'
 import Privacy from '../pages/Privacy'
+import { ProtectedRoute } from './ProtectedRoute'
 const Routers = () => {
     return ( 
         <Routes >
@@ -19,7 +20,11 @@ const Routers = () => {
             <Route path = '/shop' element = {<Shop/>}/>  
             <Route path = '/about' element = {<About/>}/>
             <Route path = '/cart' element = {<Cart/>}/>  
-            <Route path = '/checkout' element = {<Checkout/>}/>  
+            <Route path = '/checkout' element = {
+                <ProtectedRoute>
+                    <Checkout/>
+                </ProtectedRoute>
+            }/>  
             <Route path = '/shop/:id' element = {<ProductDetails/>}/>  
             <Route path = '/login' element = {<Login/>}/>  
             <Route path = '/signup' element = {<Signup/>}/> 
