@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
 import RemoveTwoToneIcon from '@mui/icons-material/RemoveTwoTone';
-
+import { confirmAlert } from 'react-confirm-alert';
+import Cart2 from '../Cart_quantity/Cart_quantity';
 const Cart = () => {
     const cartItems = useSelector((state) => state.cart.cartItems);
     const totalAmount = useSelector((state)=> state.cart.totalAmount);
@@ -105,6 +106,21 @@ const Tr = ({item})=>{
       price: item.price,
   }));
   }
+  function submit (){
+    confirmAlert({
+      title: "WARMING",
+      message: "Are you sure delete this product?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => deleteProduct(),
+        },
+        {
+          label: "No"
+        }
+      ]
+    })
+  }
   return (
     <>
         <TableRow >
@@ -116,7 +132,14 @@ const Tr = ({item})=>{
             {item.totalPrice.toLocaleString()}</TableCell>
 
           <TableCell style={{textAlign: "center"}}>
-            <IconButton onClick={removeToCart}><RemoveTwoToneIcon /></IconButton>
+            {item.quantity <=1 ? (
+              <IconButton onClick={submit}><RemoveTwoToneIcon /></IconButton>
+
+            ):(
+              <IconButton onClick={removeToCart}><RemoveTwoToneIcon /></IconButton>
+
+            )}
+            {/* <IconButton onClick={removeToCart}><RemoveTwoToneIcon /></IconButton> */}
               {/* <input value = {item.quantity}></input> */}
               <TextField 
               id="standard-basic" 
@@ -124,10 +147,10 @@ const Tr = ({item})=>{
               value = {item.quantity}
               className={'format__quantity'}/>
             <IconButton onClick={addToCart}><AddSharpIcon/></IconButton>
-
+              
           </TableCell>
           <TableCell style={{textAlign: "center"}}>
-            <motion><DeleteForeverIcon whileTap={{ scale: 1.2 }} onClick={deleteProduct} className='cart_delicon'></DeleteForeverIcon></motion>
+            <motion><DeleteForeverIcon whileTap={{ scale: 1.2 }} onClick={submit} className='cart_delicon'></DeleteForeverIcon></motion>
           </TableCell>
         </TableRow>
     </>
