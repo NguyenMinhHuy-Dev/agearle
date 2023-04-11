@@ -96,13 +96,13 @@ const Header = () => {
                 </div>
 
                 <div className="nav__icons">
-                  <span className='fav__icon'><FavoriteBorderIcon/>
+                  {/* <span className='fav__icon'><FavoriteBorderIcon/>
                     <span className="badge">1</span>
-                  </span>
-                    <NavLink to='/cart'>
-                  <span className='cart__icon'>< ShoppingCartOutlinedIcon/>
-                    <span className="badge">{totalQuantity}</span>
-                  </span>
+                  </span> */}
+                  <NavLink to='/cart'>
+                    <span className='cart__icon'>< ShoppingCartOutlinedIcon/>
+                      <span className="badge">{totalQuantity}</span>
+                    </span>
                   </NavLink>
  
                   <NavLink to='/login'>
