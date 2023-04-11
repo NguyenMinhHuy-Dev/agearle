@@ -36,38 +36,118 @@ const Signup = () => {
         }
 
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user; 
 
-            const storageRef = ref(storage, `images/${Date.now()}`);
-            const uploadTask = uploadBytesResumable(storageRef, file);
+                    setDoc(doc(db, 'users', user.uid), {
+                        uid: user.uid,
+                        displayName: name,
+                        email,
+                        photoURL: "https://agearle.vercel.app/static/media/profile.5faf09a7795d28bf5a2b.png",
+                        phoneNumber,
+                        address,
+                        password
+                    });
 
-            uploadTask.on(
-                (error) => {
-                    toast.error(error.message);
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref)
-                        .then(async (downloadURL) => {
-                            
-                            await updateProfile(user, {
-                                displayName: name,
-                                photoURL: downloadURL,
+                    updateProfile(user, {
+                        displayName: name,
+                        photoURL: "https://agearle.vercel.app/static/media/profile.5faf09a7795d28bf5a2b.png",
+                    });  
+                    
+
+                    const storageRef = ref(storage, `images/${Date.now() + file.name}`);
+                    const uploadTask = uploadBytesResumable(storageRef, file);
+
+                    uploadTask.on(
+                        "state_changed", 
+                        (err) => {
+                            // toast.error("Upload file error!");
+                        },
+                        (snapshot) => {
+                            // console.log("snapshot");
+                        },
+                        () => { 
+                            getDownloadURL(uploadTask.snapshot.ref).then( async (url) => {
+                                console.log(url);
+
+                                await updateProfile(user, { 
+                                    photoURL: url,
+                                });  
+
+                                await setDoc(doc(db, 'users', user.uid), {
+                                    uid: user.uid,
+                                    displayName: name,
+                                    email,
+                                    photoURL: url,
+                                    phoneNumber,
+                                    address,
+                                    password
+                                });
+
+                                toast.success("Account created"); 
+                                navigate('/login')
                             });
+                        }
+                    ); 
 
-                            await setDoc(doc(db, 'users', user.uid), {
-                                uid: user.uid,
-                                displayName: name,
-                                email,
-                                photoURL: downloadURL,
-                                phoneNumber,
-                                address,
-                                password
-                            });
-                        })
+                    // uploadTask.on(
+                    //     (error) => {
+                    //         toast.error(error.message);
+                    //     },
+                    //     () => {
+                    //         getDownloadURL(uploadTask.snapshot.ref)
+                    //         .then(async (downloadURL) => {
+                    //             // await updateProfile(user, {
+                    //             //     displayName: name,
+                    //             //     photoURL: downloadURL,
+                    //             // });
+
+                                // await setDoc(doc(db, 'users', user.uid), {
+                                //     uid: user.uid,
+                                //     displayName: name,
+                                //     email,
+                                //     photoURL: "downloadURL",
+                                //     phoneNumber,
+                                //     address,
+                                //     password
+                                // });
+                    //         })
+                    //     }
+                    // )  
                 })
-            toast.success("Account created");
-            navigate('/login')
+                .catch (error => {
+                    toast.error(error.message);
+                });
+
+            
+
+        //     uploadTask.on(
+        //         (error) => {
+        //             toast.error(error.message);
+        //         },
+        //         () => {
+        //             getDownloadURL(uploadTask.snapshot.ref)
+        //                 .then(async (downloadURL) => {
+                            
+        //                     await updateProfile(user, {
+        //                         displayName: name,
+        //                         photoURL: downloadURL,
+        //                     });
+
+        //                     await setDoc(doc(db, 'users', user.uid), {
+        //                         uid: user.uid,
+        //                         displayName: name,
+        //                         email,
+        //                         photoURL: downloadURL,
+        //                         phoneNumber,
+        //                         address,
+        //                         password
+        //                     });
+        //                 })
+        //         })
+        //     toast.success("Account created");
+        //     navigate('/login')
         } catch (error) {
 
         }

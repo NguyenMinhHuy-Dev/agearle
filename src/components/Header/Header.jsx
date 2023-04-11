@@ -107,7 +107,7 @@ const Header = () => {
  
                   <NavLink to='/login'>
                     <span>
-                      <motion.img whileTap={{scale:1.2}} src={currentUser ? currentUser.photoURL : userIcon} alt=''/>
+                      <motion.img whileTap={{scale:1.2}} src={sessionStorage.getItem("isLogged") ? currentUser.photoURL : userIcon} alt=''/>
                     </span>
                   </NavLink>  
 

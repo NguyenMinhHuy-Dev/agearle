@@ -108,8 +108,8 @@ const Tr = ({item})=>{
   }
   function submit (){
     confirmAlert({
-      title: "WARMING",
-      message: "Are you sure delete this product?",
+      title: "WARNING",
+      message: "Are you sure to delete this product?",
       buttons: [
         {
           label: "Yes",
