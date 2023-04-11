@@ -150,11 +150,11 @@
 .inPayment__section h1{
     margin-bottom: 15px;
     padding-bottom: 5px;
-    border-bottom: 3px solid #dfe7fd;
+    border-bottom: 3px solid #d3d3fe;
     color: #353c4e;
     text-transform: uppercase;
     letter-spacing: 10px;
-    text-shadow: -3px 1px #dfe7fd;
+    text-shadow: -3px 1px #d3d3fe;
 }
 .inPayment_box_container ul{
     padding-left: 10px;
@@ -167,10 +167,10 @@
     word-spacing: -0.05em;
 }
 .inPayment_box_container li::marker{
-    color:#dfe7fd;
+    color:#9393fa;
 }
 .inPayment_box_container{
-    border: 2px solid #dfe7fd;
+    border: 2px solid #d3d3fe;
     border-bottom-right-radius: 20px ;
     border-top-left-radius: 20px ;
     padding: 30px;
@@ -182,8 +182,8 @@
     padding: 10px;
     margin-bottom: 20px;
 
-    border-bottom: 2px solid #dfe7fd;
-    color: #dfe7fd;
+    border-bottom: 2px solid #d3d3fe;
+    color: #d3d3fe;
 }
 @media only screen and (max-width: 426px) {
     .inPayment_box_container ul{
