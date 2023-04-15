@@ -10,7 +10,8 @@ import "../styles/shop.css";
 
 const Shop = () => {
     const [selected, setSelected] = useState("");
-    const  [productsData, setProductsData] = useState(products)
+    const  [productsData, setProductsData] = useState(products) 
+
     const handleFilter = e =>{
         const filterValue = e.target.value
         if(filterValue === "All"){
@@ -50,12 +51,12 @@ const Shop = () => {
         setSelected(e.target.value);
         const sortPrice = e.target.value
         if(sortPrice === 'ascending'){
-            const sortPriceProduct = products.sort((a,b) => a.price - b.price);
+            const sortPriceProduct = productsData.sort((a,b) => a.price - b.price);
             setProductsData(sortPriceProduct);
             // console.log(products)
         }
         if(sortPrice === 'descending'){
-            const sortPriceProduct = products.sort((a,b) => b.price - a.price);
+            const sortPriceProduct = productsData.sort((a,b) => b.price - a.price);
             setProductsData(sortPriceProduct);
             // console.log(products)
         }
@@ -69,7 +70,7 @@ const Shop = () => {
 
         const searchedProducts = 
         products.filter(item =>item.productName.toLowerCase().includes(searchTerm.toLowerCase()))
-            setProductsData(searchedProducts);
+        setProductsData(searchedProducts);
     };
 
     
