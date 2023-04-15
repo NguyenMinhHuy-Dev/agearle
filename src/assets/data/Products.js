@@ -33,11 +33,13 @@ const products = [
     shortDesc:'Nổi tiếng với những thiết kế đơn giản nhưng vẫn mang vẻ đẹp riêng dành cho những gaming gear của mình, Akko luôn tới những sản phẩm chất lượng. Hôm nay sẽ là chiếc bàn phím nhỏ nhắn, xinh xắn, AKKO ACR  Pro 68. ',
     description: ProD_1,
     reviews: [
-      {
+      { 
+        userName: 'John Wick',
         rating: 4.7,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },
       {
+        userName: 'Johnathan',
         rating: 5,
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       },

@@ -21,26 +21,34 @@ const ProductDetails = () => {
     const reviewMsg = useRef("");
     const dispatch = useDispatch();
     const [rating, setRating]= useState(null);
-    const {id} = useParams();
+    const {id} = useParams(); 
 
-   const product = products.find((item)=> item.id === parseInt(id));
+    const product = products.find((item)=> item.id === parseInt(id));
     const {imgUrl, productName, price, category, avgRating, reviews, description, shortDesc} = product;
     const relatedProducts = products.filter(item=> item.category===category)
+
+    const [productReviews, setProductReviews] = useState(reviews);
+
+    // useEffect(() => {
+    //     setProductReviews(reviews);  
+    // }, [])
    
     const submitHandler = (e) => {
         e.preventDefault();
         const reviewUserName = reviewUser.current.value;
         const reviewUserMsg  = reviewMsg.current.value;
-        // console.log(reviewUserName, reviewUserMsg, rating);
+        
         const reviewObj ={
             userName: reviewUserName,
             text: reviewUserMsg,
             rating,
-        };
-        
-        console.log(reviewObj);
+        }; 
+
+        setProductReviews([...productReviews, reviewObj]);
+
         toast.success("Review submited!");
     };
+
     const addToCart = () => {
         dispatch(cartActions.addItem({
             id,
@@ -50,9 +58,11 @@ const ProductDetails = () => {
         }));
         toast.success("Product added successfully");
     };
+
     useEffect(()=>{
         window.scrollTo({top: 0, left: 0, behavior: "smooth"});
     },[product]);
+
     return ( 
        <div>
         <Helmet title={productName}/>
@@ -102,7 +112,7 @@ const ProductDetails = () => {
 
                                 <h6 className={`${tab==='rev' ? 'active__tab' : ""}`}
                                  onClick={()=> setTab('rev')}>Reviews 
-                                    [{reviews.length}]
+                                    [{productReviews.length}]
                                     </h6>
                             </div>
                             {tab === "desc" ? (
@@ -110,27 +120,29 @@ const ProductDetails = () => {
                                 {/* <p>{description}</p> */}
                                 <img src={description} alt=''></img>
                             </div>
-                            ) :( <div className='product_review'>
-                                        <div className='review_wrapper'>
-                                            <ul>
-                                                {reviews?.map((item, index)=>(
-                                                    <li kew={index} style={{marginBottom:'30px'}}>
-                                                        <h6>John Doe</h6>
-                                                        <span>{item.rating}(rating)</span>
-                                                        <p>{item.text}</p>
-                                                    </li>
-                                                ))}
-                                            </ul> 
-                                              {/* --------------------------------- */}
-                                            <div className='review__form'>
+                            ) :( 
+                                <div className='product_review'>
+                                    <div className='review_wrapper'>
+                                        <ul>
+                                            {productReviews?.map((item, index)=>(
+                                                <li kew={index} style={{marginBottom:'30px'}}>
+                                                    <h6>{item.userName}</h6>
+                                                    <span>{item.rating}(rating)</span>
+                                                    <p>{item.text}</p>
+                                                </li>
+                                            ))}
+                                        </ul> 
+                                            {/* --------------------------------- */}
+                                        <div className='review__form'>
                                             <h4>Leave your experience</h4>
-                                            <form action='' onSubmit={submitHandler}>
+                                            <form onSubmit={submitHandler}>
                                                 <div className='form__group'>
                                                     <input 
-                                                    type="text" 
-                                                    placeholder='Enter name' 
-                                                    ref={reviewUser} 
-                                                    required></input>
+                                                        type="text" 
+                                                        placeholder='Enter name' 
+                                                        ref={reviewUser}  
+                                                        required
+                                                    />
                                                 </div>
                                                 <div className='form__group rating__group'>
                                                     <motion.span whileTap={{scale:1.2}} onClick={()=>setRating(1)}>1<StarBorderOutlinedIcon/></motion.span>
@@ -141,27 +153,24 @@ const ProductDetails = () => {
                                                 </div>
                                                 <div className='form__group'>
                                                     <textarea 
-                                                    ref={reviewMsg} 
-                                                    rows={4} 
-                                                    type="text" 
-                                                    placeholder='Review Message...'
-                                                    required/>
+                                                        ref={reviewMsg} 
+                                                        rows={4} 
+                                                        type="text" 
+                                                        placeholder='Review Message...'
+                                                        required 
+                                                    />
                                                 </div>
                                                 < motion.button 
-                                                whileTap={{scale:1.2}}  
-                                                type='submit' 
-                                                className='buy__btn'>
+                                                    whileTap={{scale:1.2}}  
+                                                    type='submit' 
+                                                    className='buy__btn'
+                                                >
                                                     Submit
                                                 </motion.button>
                                             </form>
-                                           </div>
                                         </div>
                                     </div>
-
-                                // </div> 
-                                        
-
-
+                                </div> 
                             )}
                             
                         </Grid>  
