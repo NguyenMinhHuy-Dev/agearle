@@ -34,23 +34,23 @@ const Cart = () => {
                           
                           ):(
                           <Table className="table bordered">
-                          <TableHead>
-                            <TableRow>
-                              <TableCell>Image</TableCell>
-                              <TableCell>Name</TableCell>
-                              <TableCell style={{textAlign: "center"}}>Price</TableCell>
-                              <TableCell style={{textAlign: "center"}}>Qty</TableCell>
-                              <TableCell style={{textAlign: "center"}}>Delete</TableCell>
-                            </TableRow>
-                          </TableHead>
-                          <TableBody>
-                            {
-                              cartItems.map((item,index)=>(
-                                <Tr item={item} key={index}/>
-                              ))
-                            }
-                            
-                          </TableBody>
+                            <TableHead>
+                              <TableRow>
+                                <TableCell>Image</TableCell>
+                                <TableCell>Name</TableCell>
+                                <TableCell style={{textAlign: "center"}}>Price</TableCell>
+                                <TableCell style={{textAlign: "center"}}>Qty</TableCell>
+                                <TableCell style={{textAlign: "center"}}>Delete</TableCell>
+                              </TableRow>
+                            </TableHead>
+                            <TableBody>
+                              {
+                                cartItems.map((item,index)=>(
+                                  <Tr item={item} key={index}/>
+                                ))
+                              }
+                              
+                            </TableBody>
                           </Table>
 
                           )

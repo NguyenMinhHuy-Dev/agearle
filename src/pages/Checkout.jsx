@@ -2,14 +2,26 @@ import React from 'react'
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from '../components/UI/CommonSection';
 import { Container, Grid, TextField, Box, Button} from '@mui/material';
+import { Table,TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import '../styles/Check-out.css';
 import { useSelector } from 'react-redux';
+import Cart from './Cart';
+import AddSharpIcon from '@mui/icons-material/AddSharp';
+import RemoveTwoToneIcon from '@mui/icons-material/RemoveTwoTone';
+import { IconButton} from '@mui/material';
+import { Link } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert';
+import {cartActions} from '../redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 const Checkout = () => {
 
     const totalQty = useSelector(state=> state.cart.totalQuantity)
     const totalAmount = useSelector(state=> state.cart.totalAmount)
+
+    const cartItems = useSelector((state) => state.cart.cartItems); 
 
     return (
     <>
@@ -18,52 +30,28 @@ const Checkout = () => {
         <section>
             <Container>
                 <Grid container alignItems={'center'}>
+                    
+                    <Table className="table bordered">
+                        <TableHead>
+                            <TableRow>
+                            <TableCell>Image</TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell style={{textAlign: "center"}}>Price</TableCell>
+                            <TableCell style={{textAlign: "center"}}>Qty</TableCell> 
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {
+                            cartItems.map((item,index)=>(
+                                <Tr item={item} key={index}/>
+                            ))
+                            }
+                            
+                        </TableBody>
+                    </Table>
+
                     <Grid item lg={6} md={6} xs={12} paddingBottom={5}>
-                        <h1 style={{marginBottom: "20px", fontWeight: "bold"}}>Billing Information</h1>
-                        {/* <FormControl sx={{
-                            width: '25ch', 
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center'
-                            }}>  
-
-                                <TextField 
-                                id="outlined-basic"
-                                label="Outlined secondary" 
-                                color="secondary" 
-                                type="text"
-                                focused />  
-
-                            <FormGroup>
-                            <TextField 
-                            label="Outlined secondary" 
-                            color="secondary" 
-                            type='email' 
-                            placeholder='Enter your email'focused />  
-                                <input type='email' placeholder='Enter your email'></input>
-                            </FormGroup>
-
-                            <FormGroup>
-                                <input type='number' placeholder='Phone number'></input>
-                            </FormGroup>
-
-                            <FormGroup>
-                                <input type='text' placeholder='Street address'></input>
-                            </FormGroup>
-
-                            <FormGroup>
-                                <input type='text' placeholder='City'></input>
-                            </FormGroup>
-
-                            <FormGroup>
-                                <input type='text' placeholder='Potal Code'></input>
-                            </FormGroup>
-
-                            <FormGroup>
-                                <input type='text' placeholder='Country'></input>
-                            </FormGroup>
-                        </FormControl> */}
-                        
+                        <h1 style={{marginBottom: "20px", fontWeight: "bold"}}>Billing Information</h1> 
                         <Box noValidate 
                         sx={{
                             marginTop: '40px',
@@ -185,5 +173,33 @@ const Checkout = () => {
     </>
     )
 };
+
+const Tr = ({item})=>{
+
+    const dispatch = useDispatch()
+  
+    
+    return (
+      <>
+          <TableRow >
+            <Link to={`/shop/${item.id}`}>
+              <TableCell><img src={item.imgUrl} alt="" /></TableCell>
+            </Link>
+            <TableCell>{item.productName}</TableCell>
+            <TableCell style={{textAlign: "center"}}>
+              {item.totalPrice.toLocaleString()}</TableCell>
+  
+            <TableCell style={{textAlign: "center"}}>
+                <TextField 
+                id="standard-basic" 
+                variant="standard" 
+                value = {item.quantity}
+                className={'format__quantity'}/> 
+                
+            </TableCell> 
+          </TableRow>
+      </>
+    )
+  }
 
 export default Checkout;
