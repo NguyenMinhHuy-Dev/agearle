@@ -82,7 +82,8 @@ const Signup = () => {
                                     photoURL: url,
                                     phoneNumber,
                                     address,
-                                    password
+                                    password,
+                                    type: 0
                                 });
 
                                 toast.success("Account created"); 

@@ -1,6 +1,6 @@
 import React , {useRef, useEffect} from 'react'
 import './Header.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Container, Grid } from '@mui/material';
 
 import {motion} from 'framer-motion'
@@ -13,6 +13,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 //tram them
 import { useSelector } from 'react-redux';
 import useAuth from '../../custom-hooks/useAuth';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../config/firebase'; 
 
 const nav__link = [
   {
@@ -54,6 +56,12 @@ const Header = () => {
       }
     });
   };
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    signOut(auth);
+    navigate('/login');
+    sessionStorage.clear();
+  }
 
   useEffect(() => {
      stickyHeaderFunc();
@@ -105,11 +113,27 @@ const Header = () => {
                     </span>
                   </NavLink>
  
-                  <NavLink to='/login'>
-                    <span>
-                      <motion.img whileTap={{scale:1.2}} src={sessionStorage.getItem("isLogged") ? currentUser.photoURL : userIcon} alt=''/>
-                    </span>
-                  </NavLink>  
+                  <div  className='user-icon'>
+                    <NavLink to='/login'>
+                      <span>
+                        <motion.img whileTap={{scale:1.2}} src={sessionStorage.getItem("isLogged") ? currentUser.photoURL : userIcon} alt=''/>
+                      </span>
+
+                    </NavLink>  
+                      {sessionStorage.getItem("isLogged") && 
+                      <>
+                        <div className='user_info'>
+                          {sessionStorage.getItem("typeUser") && 
+                          <>
+                            <a href='/dashboard' className='user-link'>Dashboard</a>
+                          </>}
+                          <a href='/user' className='user-link'>User profile</a>
+                          <p className='user-link' onClick={handleLogOut}>Logout</p>
+                        </div>
+                      </>}
+                  </div>
+                    
+
 
                   <div className="mobile_menu">
                   <span className='mobile_menu__icon' onClick={menuToggle}><MenuIcon/></span>

@@ -27,12 +27,8 @@ const Login = () => {
 
   useEffect(() => {
     if (sessionStorage.getItem("isLogged")) {
-      navigate('/user');
-      // console.log(currentUser)
-    }
-    // signOut(auth);
-    
-      // console.log(currentUser)
+      navigate('/user'); 
+    } 
   })
 
 
@@ -50,6 +46,7 @@ const Login = () => {
         sessionStorage.setItem("isLogged", true);
         sessionStorage.setItem("phoneNumber", docSnap.data().phoneNumber);
         sessionStorage.setItem("address", docSnap.data().address); 
+        sessionStorage.setItem("typeUser", docSnap.data().type);
       } 
       else {
         toast.error("Something went wrong! Try again later");

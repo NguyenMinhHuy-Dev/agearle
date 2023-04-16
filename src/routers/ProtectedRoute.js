@@ -1,8 +1,8 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import useAuth from "../custom-hooks/useAuth"
 
-export const ProtectedRoute = ({ children }) => {
+export const ProtectedRoute = ({ }) => {
     const { currentUser } = useAuth();
 
-    return currentUser ? children : <Navigate to="/login" />;
+    return sessionStorage.getItem("isLogged") ? <Outlet /> : <Navigate to="/login" />;
 }

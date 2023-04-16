@@ -44,6 +44,7 @@
     display: flex;
     align-items: center;
     column-gap: 1.2rem;
+    /* position: relative; */
 }
 .nav__icons span {
     display: flex;
@@ -79,6 +80,57 @@
     height: 30px;
     cursor: pointer;
     border-radius: 50%;
+}
+.nav__icons .user-icon {
+    position: relative; 
+}
+.nav__icons .user-icon .user_info {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    right: 0;
+    top: 150%;
+    border-radius: 5px; 
+    background-color: #f9f7f3;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    padding: 10px 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    display: none;
+    z-index: 9999999999;
+}
+.nav__icons .user-icon::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    top: 90%;
+    right: 0;
+    z-index: 999999; 
+}
+.user-icon:hover .user_info {
+    display: flex;
+}
+.nav__icons .user_info .user-link { 
+     color: #1d3557;
+     display: flex;
+     height: 40px;
+     align-items: center;
+     justify-content: center;
+     font-size: 17px;
+     /* padding: 0 15px; */
+     line-height: 20px;
+     text-decoration: none;
+     transition: 0.1s linear;
+     cursor: pointer;
+     
+}
+.nav__icons .user_info .user-link:hover {
+    /* background-color: #c7c7c7; */
+    /* transition: 0.1s linear; */
+    font-weight: bold;
 }
 .mobile__menu{
     font-size: 1.3rem;

@@ -30,7 +30,7 @@ const User = () => {
         <div class="left">
             <img src={currentUser.photoURL} alt="user" width="100"/>
               <h4>{currentUser.displayName}</h4>
-              <p>Customer</p>
+              <p>{sessionStorage.getItem("typeUser") === 0 ? 'Customer' : 'Employee'}</p>
         </div>
         <div class="right">
             <div class="info">
