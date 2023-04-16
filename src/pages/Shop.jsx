@@ -112,8 +112,8 @@ const Shop = () => {
                             <div className="search__box">
                                 <input type="text" placeholder = "Search......" onChange={handleSearch} />
                                 <span>
-                                <SearchIcon/>
-                                    </span>
+                                    <SearchIcon/>
+                                </span>
                             </div>
                         </Grid>
                     </Grid>

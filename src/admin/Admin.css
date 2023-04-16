@@ -1,0 +1,8 @@
+.nav__search {
+    width: 500px;
+    height: 40px;   
+}
+
+.nav__search .search__box {
+    height: 100%;
+}

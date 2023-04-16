@@ -41,12 +41,7 @@ const Header = () => {
   const menuRef = useRef();
   const headerRef = useRef(null);
   //
-  const totalQuantity = useSelector(state=> state.cart.totalQuantity)
-  // const navigateToCart =()=>{
-  //   navigate("/cart")
-  // }
-  //
-  // scroll header
+  const totalQuantity = useSelector(state=> state.cart.totalQuantity) 
   const stickyHeaderFunc = () =>{
     window.addEventListener("scroll",() => {
       if(document.body.scrollTop > 29 || document.documentElement.scrollTop > 29){
@@ -72,18 +67,18 @@ const Header = () => {
   //-----------------------------
   return (
     <>
-    <header className="header" ref={headerRef}>
+      <header className="header" ref={headerRef}>
       <Container>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1 }}>
           <div className="nav__wrapper">
-            <div className="logo">
-              <img src={logo} alt="logo"/>
-              <div>
-                <NavLink to ='/home' style={{textDecorationLine: 'none', color: "black"}}>
-                <h1>Agearle</h1>
-                </NavLink>
-              </div>
-            </div>
+                <div className="logo">
+                  <img src={logo} alt="logo"/>
+                  <div>
+                    <NavLink to ='/home' style={{textDecorationLine: 'none', color: "black"}}>
+                    <h1>Agearle</h1>
+                    </NavLink>
+                  </div>
+                </div>
 
                 <div className="navigation" ref={menuRef} onClick={menuToggle}>
                   <ul className="menu">
@@ -136,8 +131,8 @@ const Header = () => {
 
 
                   <div className="mobile_menu">
-                  <span className='mobile_menu__icon' onClick={menuToggle}><MenuIcon/></span>
-                </div>
+                    <span className='mobile_menu__icon' onClick={menuToggle}><MenuIcon/></span>
+                  </div>
                 </div>
 
 
