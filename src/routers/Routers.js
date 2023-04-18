@@ -29,9 +29,10 @@ const Routers = () => {
 
             <Route path='/*' element={<ProtectedRoute />}>
                 <Route path='checkout' element={<Checkout />} />
-                <Route path='dashboard' element={<Dashboard />} />
+                {/* <Route path='dashboard' element={<Dashboard />} /> */}
             </Route>
 
+            <Route path='dashboard' element={<Dashboard />} />
             <Route path = '/shop/:id' element = {<ProductDetails/>}/>  
             <Route path = '/login' element = {<Login/>}/>  
             <Route path = '/signup' element = {<Signup/>}/> 

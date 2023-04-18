@@ -12,6 +12,26 @@ import SearchIcon from '@mui/icons-material/Search';
 import './Admin.css'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import { Row } from "react-bootstrap";
+
+const admin__nav = [
+    {
+        display: 'Dashboard',
+        path: '/dashboard'
+    },
+    {
+        display: 'All-Products',
+        path: '/dashboard/all-products'
+    },
+    {
+        display: 'Orders',
+        path: '/dashboard/orders'
+    },
+    {
+        display: 'Users',
+        path: '/dashboard/users'
+    },
+]
 
 export const AdminNav = () => {
     const { currentUser } = useAuth();
@@ -103,6 +123,23 @@ export const AdminNav = () => {
                 </Grid>
             </Container>
         </header>
+
+        <section className="admin__menu">
+            <Container>
+                
+                <Row>
+                    <div className="admin__navigation">
+                        <ul className="admin__menu-list">
+                            {admin__nav.map((item, index) => 
+                                <li className="admin__menu-item" key={index}>
+                                    <NavLink to={item.path}>{item.display}</NavLink>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                </Row>
+            </Container>
+        </section>
       </>
     );
 }
