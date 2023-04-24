@@ -1,0 +1,40 @@
+
+.revenue__box,
+.orders__box,
+.products__box,
+.users__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.revenue__box:hover,
+.orders__box:hover,
+.products__box:hover,
+.users__box:hover {
+  transform: translateY(-4px);
+}
+
+.revenue__box h5,
+.orders__box h5,
+.products__box h5,
+.users__box h5 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.revenue__box span,
+.orders__box span,
+.products__box span,
+.users__box span {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3f51b5;
+}
