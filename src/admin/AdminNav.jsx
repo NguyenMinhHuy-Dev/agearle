@@ -19,6 +19,7 @@ const admin__nav = [
         display: 'Dashboard',
         path: '/dashboard'
     },
+    
     {
         display: 'All-Products',
         path: '/dashboard/all-products'
@@ -60,7 +61,7 @@ export const AdminNav = () => {
     } 
 
     const handleSearch = e =>{
-        const searchTerm = e.target.value;
+        // const searchTerm = e.target.value;
 
     };
 
