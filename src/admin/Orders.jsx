@@ -89,6 +89,23 @@ const Orders = () => {
                   </div>
                   </td>
                 </tr>  
+                
+                <tr>
+                  <td>OD03</td>
+                  <td>Nguyễn Văn Toàn</td>
+                  <td>0933512513</td>
+                  <td>Đăk Lăk</td>
+                  <td>Giao cuối tuần</td>
+                  <td>23/04/2023</td>
+                  <td>790.000đ</td>
+                  <td className='cancel'>Cancel</td>
+                  <td>
+                  <div className='detail_button nav_button'> 
+                    <ArrowDropDownIcon className='nav_button_icon'/>
+                    <span>Detail</span>
+                  </div>
+                  </td>
+                </tr>  
               </tbody>
             </table>
           </Grid>
