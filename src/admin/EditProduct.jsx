@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
   Container,
   FormGroup,
@@ -13,10 +13,10 @@ import {toast} from 'react-toastify'
 
 import { db,storage } from '../config/firebase'
 import { ref,uploadBytesResumable, getDownloadURL } from 'firebase/storage'
-import {collection, addDoc} from 'firebase/firestore'
-import { NavLink, useNavigate } from 'react-router-dom'
+import {collection, addDoc, getDoc, doc, updateDoc} from 'firebase/firestore'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
-function AddProducts() {
+function EditProducts() {
 
   const [enterTitle, setEntertitle] = useState('')
   const [enterShortDesc, setEnterShortDesc] = useState('')
@@ -28,52 +28,74 @@ function AddProducts() {
   const [enterProductImg, setEnterProductImg] = useState(null)
   const [loading,setLoading] = useState(false);
 
+  const { id } = useParams();
+
   const navigate = useNavigate();
 
-  const addProduct = async e => {
+  const editProduct = async e => {
     e.preventDefault()
     setLoading(true)
 
+    const docRef = doc(db, "products", id);
 
-    // ========= add Product to the firebase ========== 
-    try{
-
-      const docRef = await collection(db,'products')
-
-      const storageRef = ref(storage, `prodcutImages/${Date.now() + enterProductImg.name}`)
-      const uploadTask = uploadBytesResumable(storageRef,enterProductImg)
-
-      uploadTask.on(() =>{
-        toast.error('images not uploaded')
-      }, ()=>{
-        getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
-          await addDoc(docRef, {
+    if (enterProductImg) {
+        const storageRef = ref(storage, `prodcutImages/${Date.now() + enterProductImg.name}`)
+        const uploadTask = uploadBytesResumable(storageRef,enterProductImg)
+        uploadTask.on(() =>{
+            toast.error('images not uploaded')
+          }, ()=>{
+            getDownloadURL(uploadTask.snapshot.ref).then(async downloadURL => {
+              await updateDoc(docRef, {
+                productName : enterTitle,
+                shortDesc : enterShortDesc,
+                description : enterDescription,
+                category : enterCategory,
+                importedPrice : enterImportPrice,
+                salePrice : enterSalePrice,
+                quantity: enterQuantity,
+                imgUrl : downloadURL,
+              })
+            })
+          })
+          
+          setLoading(false)
+          toast.success("Product Successfully added!!")
+          navigate('/dashboard/all-products'); 
+    }
+    else {
+        await updateDoc(docRef, {
             productName : enterTitle,
             shortDesc : enterShortDesc,
             description : enterDescription,
             category : enterCategory,
             importedPrice : enterImportPrice,
             salePrice : enterSalePrice,
-            quantity: enterQuantity,
-            imgUrl : downloadURL,
+            quantity: enterQuantity, 
           })
-        })
-      })
-      
-      setLoading(false)
-      toast.success("Product Successfully added!!")
-      navigate('/dashboard/all-products');
-    } catch(err) {
-
-      setLoading(false)
-      toast.error('Product not added!!')
+          
+          setLoading(false)
+          toast.success("Product Successfully added!!")
+          navigate('/dashboard/all-products'); 
     }
-
-    
-
-    // console.log(product);
+ 
   }
 
+  const getProduct = async() => {
+    const docRef = doc(db, "products", id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+        setEntertitle(docSnap.data().productName);
+        setEnterDescription(docSnap.data().description);
+        setEnterCategory(docSnap.data().category);
+        setEnterImportPrice(docSnap.data().importedPrice);
+        setEnterSalePrice(docSnap.data().salePrice);
+        setEnterQuantity(docSnap.data().quantity);
+    }
+  }
+
+  useEffect(() => {
+    getProduct();
+  }, [])
 
   return (
     <section className='admin_section'>
@@ -85,8 +107,8 @@ function AddProducts() {
               <NavLink to='/dashboard/all-products' style={{textDecorationLine: 'none', color: "black"}}> 
                 Comeback
               </NavLink>
-              <h1 className='title'>Add Products</h1>
-              <form onSubmit={addProduct}>
+              <h1 className='title'>Edit Product</h1>
+              <form onSubmit={editProduct}>
               <FormGroup>
                 <TextField
                   label="Product Name"
@@ -107,7 +129,6 @@ function AddProducts() {
                   variant="outlined"
                   fullWidth
                   margin="normal"
-                  required
                 />
               </FormGroup> 
 
@@ -207,7 +228,7 @@ function AddProducts() {
                   />
               </FormGroup>
               <Button variant="contained" color="primary" type="submit" className='addProductButton'>
-                Add Product
+                Save Changes
               </Button>
             </form>
               </>
@@ -220,4 +241,4 @@ function AddProducts() {
   )
 }
 
-export default AddProducts;
+export default EditProducts;

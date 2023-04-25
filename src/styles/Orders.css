@@ -1,0 +1,24 @@
+.orders-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 24px;
+
+  }
+
+  .orders-table th {
+    background-color: #f2f2f2;
+    color: #444;
+    font-weight: bold;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .orders-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+  }
+
+  .orders-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }

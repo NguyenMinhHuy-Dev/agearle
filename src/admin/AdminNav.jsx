@@ -20,7 +20,7 @@ const admin__nav = [
         path: '/dashboard'
     },
     {
-        display: 'All-Products',
+        display: 'Products',
         path: '/dashboard/all-products'
     },
     {
@@ -30,6 +30,10 @@ const admin__nav = [
     {
         display: 'Users',
         path: '/dashboard/users'
+    },
+    {
+        display: 'Limited Products',
+        path: '/dashboard/limited-products'
     },
 ]
 
@@ -66,80 +70,89 @@ export const AdminNav = () => {
 
     return (
         <>
-        <header className="header" ref={headerRef}>
-            <Container>
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1 }}>
-                    <div className="nav__wrapper">
-                        <div className="logo">
-                            <img src={logo} alt="logo"/>
-                            <div>
-                            <NavLink to ='/home' style={{textDecorationLine: 'none', color: "black"}}>
-                            <h1>Agearle</h1>
-                            </NavLink>
+            <header className="header" ref={headerRef}>
+                <Container>
+                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1 }}>
+                        <div className="nav__wrapper">
+                            <div className="logo">
+                                <img src={logo} alt="logo"/>
+                                <div>
+                                <NavLink to ='/home' style={{textDecorationLine: 'none', color: "black"}}>
+                                <h1>Agearle</h1>
+                                </NavLink>
+                                </div>
                             </div>
-                        </div>
- 
-                        <div className="nav__search">
-                            <div className="search__box">
-                                <input type="text" placeholder = "Search......" onChange={handleSearch} />
-                                <span>
-                                    <SearchIcon/>
-                                </span>
+    
+                            {/* <div className="nav__search">
+                                <div className="search__box">
+                                    <input type="text" placeholder = "Search......" onChange={handleSearch} />
+                                    <span>
+                                        <SearchIcon/>
+                                    </span>
+                                </div>
+                            </div>  */}
+
+                            <div className="admin__navigation">
+                                <ul className="admin__menu-list">
+                                    {admin__nav.map((item, index) => 
+                                        <li className="admin__menu-item" key={index}>
+                                            <NavLink to={item.path}>{item.display}</NavLink>
+                                        </li>
+                                    )}
+                                </ul>
                             </div>
-                        </div> 
-                        
-                        <div className="nav__icons">
-                            <NavLink >
-                                <span className='cart__icon'><SettingsOutlinedIcon/> 
-                                </span>
-                            </NavLink>
+                            
+                            <div className="nav__icons">
+                                <NavLink >
+                                    <span className='cart__icon'><SettingsOutlinedIcon/> 
+                                    </span>
+                                </NavLink>
 
-                            <NavLink >
-                                <span className='cart__icon'><NotificationsActiveOutlinedIcon/> 
-                                </span>
-                            </NavLink>
+                                <NavLink >
+                                    <span className='cart__icon'><NotificationsActiveOutlinedIcon/> 
+                                    </span>
+                                </NavLink>
 
-                            <div  className='user-icon'>
-                                <NavLink to='/login'>
-                                <span>
-                                    <motion.img whileTap={{scale:1.2}} src={sessionStorage.getItem("isLogged") ? currentUser.photoURL : userIcon} alt=''/>
-                                </span>
+                                <div  className='user-icon'>
+                                    <NavLink to='/login'>
+                                    <span>
+                                        <motion.img whileTap={{scale:1.2}} src={sessionStorage.getItem("isLogged") ? currentUser.photoURL : userIcon} alt=''/>
+                                    </span>
 
-                                </NavLink>  
-                                {sessionStorage.getItem("isLogged") && 
-                                <>
-                                    <div className='user_info'>
-                                    {sessionStorage.getItem("typeUser") && 
+                                    </NavLink>  
+                                    {sessionStorage.getItem("isLogged") && 
                                     <>
-                                        <a href='/dashboard' className='user-link'>Dashboard</a>
+                                        <div className='user_info'>
+                                        {sessionStorage.getItem("typeUser") && 
+                                        <>
+                                            <a href='/dashboard' className='user-link'>Dashboard</a>
+                                        </>}
+                                        <a href='/user' className='user-link'>User profile</a>
+                                        <p className='user-link' onClick={handleLogOut}>Logout</p>
+                                        </div>
                                     </>}
-                                    <a href='/user' className='user-link'>User profile</a>
-                                    <p className='user-link' onClick={handleLogOut}>Logout</p>
-                                    </div>
-                                </>}
-                            </div> 
-                        </div>
-                    </div>    
-                </Grid>
-            </Container>
-        </header>
+                                </div> 
+                            </div>
+                        </div>    
+                    </Grid>
+                </Container>
+            </header>
 
-        <section className="admin__menu">
-            <Container>
-                
-                <Row>
-                    <div className="admin__navigation">
-                        <ul className="admin__menu-list">
-                            {admin__nav.map((item, index) => 
-                                <li className="admin__menu-item" key={index}>
-                                    <NavLink to={item.path}>{item.display}</NavLink>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                </Row>
-            </Container>
-        </section>
+            {/* <section className="admin__menu">
+                <Container>
+                    <Row>
+                        <div className="admin__navigation">
+                            <ul className="admin__menu-list">
+                                {admin__nav.map((item, index) => 
+                                    <li className="admin__menu-item" key={index}>
+                                        <NavLink to={item.path}>{item.display}</NavLink>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
+                    </Row>
+                </Container>
+            </section> */}
       </>
     );
 }
