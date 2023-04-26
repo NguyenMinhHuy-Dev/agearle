@@ -29,6 +29,8 @@ function EditUser() {
     const [enterUserImg, setEnterUserImg] = useState(null)
     const [loading,setLoading] = useState(false);
 
+    const [password, setPassword] = useState('');
+
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -45,13 +47,16 @@ function EditUser() {
         }
         setLoading(true)
 
-        // const userCredential = await signInWithEmailAndPassword(auth, enterEmail, enterPassword);
+        
+        let originalUser = auth.currentUser;
 
-        // const user = userCredential.user; 
+        const userCredential = await signInWithEmailAndPassword(auth, enterEmail, password);
 
-        // updateProfile(user, { 
-        //     password: enterPassword
-        // });  
+        const user = userCredential.user; 
+
+        updateProfile(user, { 
+            password: enterPassword
+        });  
 
         if (enterUserImg) {
             const storageRef = ref(storage, `prodcutImages/${Date.now() + enterUserImg.name}`)
@@ -90,6 +95,8 @@ function EditUser() {
               toast.success("Product Successfully added!!")
               navigate('/dashboard/all-products'); 
         }
+        
+        auth.updateCurrentUser(originalUser);
         return;
     } 
     
@@ -142,7 +149,7 @@ function EditUser() {
         setEnterAddress(docSnap.data().address);
         setEnterPhone(docSnap.data().phoneNumber);
         setEnterType(docSnap.data().type); 
-        setEnterPassword(docSnap.data().password)
+        setPassword(docSnap.data().password)
     }
   }
 

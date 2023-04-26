@@ -9,6 +9,7 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import AddToQueueIcon from '@mui/icons-material/AddToQueue';
 import { NavLink } from 'react-router-dom';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { confirmAlert } from 'react-confirm-alert';
 
 const Users = () => {
 
@@ -45,6 +46,22 @@ const Users = () => {
             setUsers(filteredUsers)
         }
     }
+
+    function submit (id){
+        confirmAlert({
+          title: "WARNING",
+          message: "Are you sure to delete this user?",
+          buttons: [
+            {
+              label: "Yes",
+              onClick: () => deleteUser(id),
+            },
+            {
+              label: "No"
+            }
+          ]
+        })
+      }
 
     useEffect(() => {
         const getUsers = async () => {
@@ -130,7 +147,7 @@ const Users = () => {
                                                 Edit
                                             </NavLink>
                                             <button className='btn btn-danger'onClick={()=>{
-                                                deleteUser(user.uid)
+                                                submit(user.uid)
                                             }}>
                                                 Delete
                                             </button>
