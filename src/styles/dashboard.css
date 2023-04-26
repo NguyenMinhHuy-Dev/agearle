@@ -1,23 +1,31 @@
+.dashboard_header {
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24%;
+  gap: 10px;
+}
+
 .revenue__box,
 .orders__box,
 .products__box,
 .users__box {
-  display: flex;
+  display: inline-flex;
+  height: 70px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: transform 0.3s ease-in-out;
 }
-
 .revenue__box:hover,
 .orders__box:hover,
 .products__box:hover,
 .users__box:hover {
   transform: translateY(-4px);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+  transition: 0.3s ease-in-out;
 }
 
 .revenue__box h5,
@@ -27,6 +35,7 @@
   margin: 0 0 8px;
   font-size: 18px;
   font-weight: 600;
+  cursor: default;
 }
 
 .revenue__box span,
@@ -36,4 +45,13 @@
   font-size: 24px;
   font-weight: 700;
   color: #3f51b5;
+  cursor: default;
+} 
+
+
+.dashboard {
+  width: 100%;
+  min-height: 100vh;
+  /* background-color: #000; */
 }
+

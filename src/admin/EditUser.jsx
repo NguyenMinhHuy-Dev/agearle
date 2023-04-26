@@ -11,10 +11,11 @@ import {
 } from '@mui/material'
 import {toast} from 'react-toastify' 
 
-import { db,storage } from '../config/firebase'
+import { auth, db,storage } from '../config/firebase'
 import { ref,uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import {collection, addDoc, getDoc, doc, updateDoc} from 'firebase/firestore'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 function EditUser() {
 
@@ -43,6 +44,15 @@ function EditUser() {
             return;
         }
         setLoading(true)
+
+        // const userCredential = await signInWithEmailAndPassword(auth, enterEmail, enterPassword);
+
+        // const user = userCredential.user; 
+
+        // updateProfile(user, { 
+        //     password: enterPassword
+        // });  
+
         if (enterUserImg) {
             const storageRef = ref(storage, `prodcutImages/${Date.now() + enterUserImg.name}`)
             const uploadTask = uploadBytesResumable(storageRef,enterUserImg)
@@ -132,6 +142,7 @@ function EditUser() {
         setEnterAddress(docSnap.data().address);
         setEnterPhone(docSnap.data().phoneNumber);
         setEnterType(docSnap.data().type); 
+        setEnterPassword(docSnap.data().password)
     }
   }
 

@@ -236,7 +236,7 @@ function AddUser() {
                 </FormGroup>  
                 
                 <Button variant="contained" color="primary" type="submit" className='addProductButton'>
-                    Add Product
+                    Add User
                 </Button>
                 </form>
               </>
