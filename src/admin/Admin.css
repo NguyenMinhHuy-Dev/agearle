@@ -137,6 +137,16 @@ ul {
 .detail_button span {
     margin: 0;
     color: #00000085; 
+    user-select: none;
+}
+
+.print_button {
+    width: auto;
+    background-color: #34495e;
+}
+
+.print_button span {
+    font-size: 15px;
 }
 
 .addProductButton {
@@ -148,8 +158,60 @@ ul {
 
 .under {
     width: 100%;
-    height: 50px;
+    /* height: 100px; */
+    background-color: #fff;
+    overflow: hidden;
+    display: none;
+}
+
+.bill {
+    width: 800px;
+    min-height: 100px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    margin: 0 auto;
+    position: relative;
+    text-align: justify;
+    padding: 10px 15px;
+}
+
+.bill-print {
+    position: absolute;
+    z-index: 9999;
+    color: #000;
+    font-size: 16px;
+    left: 100%;
+}
+
+.bill-info {
+    color: #000;
+    font-size: 17px;
+    display: block;
+}
+
+.bill-info.money {
+    margin-top: 10px;
+    font-size: 19px;
+    text-align: right;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
     background-color: #000;
+    margin: 15px 0;
+}
+
+.bill table th,
+.bill table tr,
+.bill table td {
+    background-color: #fff;
+    border: 1px solid #000;
+}  
+
+.under.active { 
+    display: table-cell;
 }
 
 .delivering {

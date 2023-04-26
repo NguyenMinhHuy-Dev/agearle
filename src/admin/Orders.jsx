@@ -7,7 +7,8 @@ import AddToQueueIcon from '@mui/icons-material/AddToQueue';
 import { NavLink } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'; 
+import PrintIcon from '@mui/icons-material/Print';
 
 const Orders = () => {
   
@@ -16,7 +17,12 @@ const Orders = () => {
 
   };
 
-  const handleDetail = () => {
+  const handleDetail = (id) => {
+    document.getElementById(id).classList.toggle('active');
+    // console.log(id);
+  }
+
+  const handlePrint = () => {
 
   }
 
@@ -55,6 +61,7 @@ const Orders = () => {
                   <th>Action</th>
                 </tr>
               </thead>
+
               <tbody>
                 <tr>
                   <td>OD01</td>
@@ -66,12 +73,50 @@ const Orders = () => {
                   <td>690.000đ</td>
                   <td className='delivering'>Delivering</td>
                   <td>
-                  <div className='detail_button nav_button'> 
-                    <ArrowDropDownIcon className='nav_button_icon'/>
-                    <span>Detail</span>
-                  </div>
+                    <div onClick={e => {handleDetail('OD01')}} className='detail_button nav_button'> 
+                      <ArrowDropDownIcon className='nav_button_icon'/>
+                      {/* <span>Detail</span> */}
+                    </div>
+                    <div onClick={handlePrint} className='print_button nav_button'>
+                      <PrintIcon className='nav_button_icon'/>
+                      <span>Print</span>
+                    </div>
                   </td>
                 </tr>  
+                <tr>
+                  <td colSpan='9' className='under' id='OD01'>
+                      <div className='bill'>
+                        {/* <span className='bill-print'>Print</span> */}
+
+                        <span className='bill-info'><b>Order ID:</b> OD01</span>
+                        <span className='bill-info'><b>Date:</b> 24/04/2023</span>
+                        <span className='bill-info'><b>Status:</b> Delivering</span>
+                        <div className='line'></div>
+                        <span className='bill-info'><b>Customer's name:</b> Nguyễn Thị Huyền Trâm</span>
+                        <span className='bill-info'><b>Customer's phone:</b> 0888278748</span>
+                        <span className='bill-info'><b>Customer's address:</b> Quận 12</span>
+                        <table>
+                          <thead>
+                            <th>#</th>
+                            <th>Product name</th>
+                            <th>Quantity</th>
+                            <th>Price</th> 
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td style={{textAlign: 'justify'}}>Chuột DareU RGB Superlight Wireless Pink</td>
+                              <td>1</td>
+                              <td>690.000đ</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <span className='bill-info money'><b>Total:</b> 690.000đ</span>
+                        <div className='line'></div>
+                        
+                      </div>
+                  </td>
+                </tr>
 
                 <tr>
                   <td>OD02</td>
@@ -83,12 +128,50 @@ const Orders = () => {
                   <td>2.390.000đ</td>
                   <td className='done'>Done</td>
                   <td>
-                  <div className='detail_button nav_button'> 
-                    <ArrowDropDownIcon className='nav_button_icon'/>
-                    <span>Detail</span>
-                  </div>
+                    <div onClick={e => {handleDetail('OD02')}} className='detail_button nav_button'> 
+                      <ArrowDropDownIcon className='nav_button_icon'/>
+                      {/* <span>Detail</span> */}
+                    </div>
+                    <div onClick={handlePrint} className='print_button nav_button'>
+                      <PrintIcon className='nav_button_icon'/>
+                      <span>Print</span>
+                    </div>
                   </td>
                 </tr>  
+                <tr>
+                  <td colSpan='9' className='under' id='OD02'>
+                      <div className='bill'>
+                        {/* <span className='bill-print'>Print</span> */}
+
+                        <span className='bill-info'><b>Order ID:</b> OD02</span>
+                        <span className='bill-info'><b>Date:</b> 22/04/2023</span>
+                        <span className='bill-info'><b>Status:</b> Done</span>
+                        <div className='line'></div>
+                        <span className='bill-info'><b>Customer's name:</b> Trần Tấn Trung</span>
+                        <span className='bill-info'><b>Customer's phone:</b> 01265814111</span>
+                        <span className='bill-info'><b>Customer's address:</b> Bà Điểm</span>
+                        <table>
+                          <thead>
+                            <th>#</th>
+                            <th>Product name</th>
+                            <th>Quantity</th>
+                            <th>Price</th> 
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td style={{textAlign: 'justify'}}>Bàn phím AKKO ACR Pro 68</td>
+                              <td>1</td>
+                              <td>2.390.000đ</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <span className='bill-info money'><b>Total:</b> 2.390.000đ</span>
+                        <div className='line'></div>
+                        
+                      </div>
+                  </td>
+                </tr>
                 
                 <tr>
                   <td>OD03</td>
@@ -100,12 +183,50 @@ const Orders = () => {
                   <td>790.000đ</td>
                   <td className='cancel'>Cancel</td>
                   <td>
-                  <div className='detail_button nav_button'> 
-                    <ArrowDropDownIcon className='nav_button_icon'/>
-                    <span>Detail</span>
-                  </div>
+                    <div onClick={e => {handleDetail('OD03')}} className='detail_button nav_button'> 
+                      <ArrowDropDownIcon className='nav_button_icon'/>
+                      {/* <span>Detail</span> */}
+                    </div>
+                    <div onClick={handlePrint} className='print_button nav_button'>
+                      <PrintIcon className='nav_button_icon'/>
+                      <span>Print</span>
+                    </div>
                   </td>
                 </tr>  
+                <tr>
+                  <td colSpan='9' className='under' id='OD03'>
+                      <div className='bill'>
+                        {/* <span className='bill-print'>Print</span> */}
+
+                        <span className='bill-info'><b>Order ID:</b> OD03</span>
+                        <span className='bill-info'><b>Date:</b> 23/04/2023</span>
+                        <span className='bill-info'><b>Status:</b> Cancel</span>
+                        <div className='line'></div>
+                        <span className='bill-info'><b>Customer's name:</b> Nguyễn Văn Toàn</span>
+                        <span className='bill-info'><b>Customer's phone:</b> 0933512513</span>
+                        <span className='bill-info'><b>Customer's address:</b> Đăk Lăk</span>
+                        <table>
+                          <thead>
+                            <th>#</th>
+                            <th>Product name</th>
+                            <th>Quantity</th>
+                            <th>Price</th> 
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td style={{textAlign: 'justify'}}>Tai nghe Havit H2008D</td>
+                              <td>1</td>
+                              <td>790.000đ</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <span className='bill-info money'><b>Total:</b> 790.000đ</span>
+                        <div className='line'></div>
+                        
+                      </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </Grid>
