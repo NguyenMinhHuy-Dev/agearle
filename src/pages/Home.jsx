@@ -10,11 +10,23 @@ import { Link } from 'react-router-dom';
 import {motion} from 'framer-motion'
 import products from '../assets/data/Products'
 import counterImg from '../assets/img/Count_2.png'
+import counterImg2 from '../assets/img/Home-3.png'
 
 import Services from '../Services/Services';
 import ProductsList from '../components/UI/ProductsList';
 
 import Clock from '../components/UI/Clock';
+
+// const productLimited = [
+//     {
+//         img: counterImg,
+//         date: 'Apr 27, 2023'
+//     },
+//     {
+//         img: counterImg2,
+//         date: 'Apr 28, 2023'
+//     },
+// ]
 
 const Home = () => {
     const[trendingProducts, setTrendingProducts] = useState([]);
@@ -37,7 +49,7 @@ const Home = () => {
         setNewArrivals(filteredNewArrivals);
         setPopular(filteredPopular);
 
-        window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+        // window.scrollTo({top: 0, left: 0, behavior: "smooth"});
     },[]);
     return ( 
         <>
@@ -103,7 +115,7 @@ const Home = () => {
                 
                     <Grid item lg={6} md={6} xs={6}>
                         
-                        <Clock/>
+                        <Clock date='Apr 27, 2023'/>
 
                         <motion.button whileHover={{scale: 1.2}} className="buy__btn store__btn">
                             <Link to ='/shop'>Visit Store</Link>

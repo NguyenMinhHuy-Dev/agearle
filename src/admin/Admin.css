@@ -228,3 +228,12 @@ ul {
     color: #e74c3c;
     font-weight: bold;
 }
+
+.right-form {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;  */
+    /* padding: 10px; */
+    /* border: 2px solid #474747; */
+    /* border-radius: 5px; */
+}

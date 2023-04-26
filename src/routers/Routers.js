@@ -20,6 +20,7 @@ import AddProducts from '../admin/AddProduct'
 import EditProducts from '../admin/EditProduct'
 import AddUser from '../admin/AddUser'
 import EditUser from '../admin/EditUser'
+import { LimitedProducts } from '../admin/LimitedProduct'
 const Routers = () => {
     return ( 
         <Routes >
@@ -44,6 +45,7 @@ const Routers = () => {
                 <Route path='dashboard/users' element={<Users />} /> 
                 <Route path='dashboard/add-user' element={<AddUser />} /> 
                 <Route path='dashboard/edit-user/:id' element={<EditUser />} /> 
+                <Route path='dashboard/limited-products' element={<LimitedProducts />}/>
             </Route>
  
             <Route path = '/shop/:id' element = {<ProductDetails/>}/>  
