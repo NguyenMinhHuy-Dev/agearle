@@ -15,7 +15,7 @@ import { auth, db,storage } from '../config/firebase'
 import { ref,uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import {collection, addDoc, setDoc, doc} from 'firebase/firestore'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth' 
 
 function AddUser() {
 
@@ -41,6 +41,8 @@ function AddUser() {
     }
 
     try {
+        let originalUser = auth.currentUser;
+ 
         const userCredential = await createUserWithEmailAndPassword(auth, enterEmail, enterPassword)
         .then((userCredential) => {
             const user = userCredential.user; 
@@ -92,7 +94,7 @@ function AddUser() {
                         });
 
                         toast.success("User created"); 
-                        navigate('/login')
+                        navigate('/dashboard/users')
                     });
                 }
             ); 
@@ -100,6 +102,8 @@ function AddUser() {
         .catch (error => {
             toast.error(error.message);
         }); 
+ 
+        auth.updateCurrentUser(originalUser);
     } catch (error) {
 
     }
