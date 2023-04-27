@@ -51,7 +51,7 @@ const Login = () => {
       else {
         toast.error("Something went wrong! Try again later");
       }
-
+      console.log(docSnap.data());
       toast.success("Login successful!");
       
       navigate('/user'); 

@@ -54,7 +54,7 @@ function EditUser() {
 
         const user = userCredential.user; 
 
-        updateProfile(user, { 
+        await updateProfile(user, { 
             password: enterPassword
         });  
 
@@ -72,7 +72,7 @@ function EditUser() {
                     phoneNumber: enterPhone,
                     address: enterAddress,
                     password: enterPassword,
-                    type: enterType 
+                    // type: enterType 
                   })
                 })
               })
@@ -88,7 +88,7 @@ function EditUser() {
                 phoneNumber: enterPhone,
                 address: enterAddress,
                 password: enterPassword,
-                type: enterType 
+                // type: enterType 
               })
               
               setLoading(false)
@@ -115,7 +115,7 @@ function EditUser() {
                 photoURL: downloadURL,
                 phoneNumber: enterPhone,
                 address: enterAddress, 
-                type: enterType 
+                // type: enterType 
               })
             })
           })
@@ -130,7 +130,7 @@ function EditUser() {
             email: enterEmail,  
             phoneNumber: enterPhone,
             address: enterAddress, 
-            type: enterType 
+            // type: enterType 
           })
           
           setLoading(false)
@@ -218,7 +218,7 @@ function EditUser() {
                     />
                 </FormGroup>  
 
-                <FormGroup>
+                {/* <FormGroup>
                     <FormControl fullWidth margin="normal">
                     <Select 
                         variant="outlined"
@@ -235,7 +235,7 @@ function EditUser() {
                         <MenuItem value="0">Customer</MenuItem> 
                     </Select>
                     </FormControl>
-                </FormGroup> 
+                </FormGroup>  */}
 
                 <FormGroup>
                     <TextField 
@@ -253,7 +253,7 @@ function EditUser() {
                     />
                 </FormGroup> 
                 
-                <FormGroup>
+                {/* <FormGroup>
                     <TextField
                     label="Password"
                     variant="outlined"
@@ -277,7 +277,7 @@ function EditUser() {
                     value={enterConfirmPassword}
                     onChange={e=> setEnterConfirmPassword(e.target.value)} 
                     />
-                </FormGroup>  
+                </FormGroup>   */}
                 
                 <Button variant="contained" color="primary" type="submit" className='addProductButton'>
                     Save Changes

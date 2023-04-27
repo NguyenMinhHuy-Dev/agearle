@@ -26,6 +26,7 @@ function AddUser() {
   const [enterPhone, setEnterPhone] = useState('')
   const [enterPassword, setEnterPassword] = useState('')
   const [enterConfirmPassword, setEnterConfirmPassword] = useState('')
+  const [enterSalary, setEnterSalary] = useState('')
   const [enterUserImg, setEnterUserImg] = useState(null)
   const [loading,setLoading] = useState(false);
 
@@ -54,6 +55,7 @@ function AddUser() {
                 photoURL: "https://agearle.vercel.app/static/media/profile.5faf09a7795d28bf5a2b.png",
                 phoneNumber: enterPhone,
                 address: enterAddress,
+                salary: enterSalary,
                 password: enterPassword
             });
 
@@ -89,8 +91,9 @@ function AddUser() {
                             photoURL: url,
                             phoneNumber: enterPhone,
                             address: enterAddress,
+                            salary: enterSalary,
                             password: enterPassword,
-                            type: enterType 
+                            type: "3" 
                         });
 
                         toast.success("User created"); 
@@ -172,7 +175,7 @@ function AddUser() {
                     />
                 </FormGroup>  
 
-                <FormGroup>
+                {/* <FormGroup>
                     <FormControl fullWidth margin="normal">
                     <Select 
                         variant="outlined"
@@ -189,7 +192,7 @@ function AddUser() {
                         <MenuItem value="0">Customer</MenuItem> 
                     </Select>
                     </FormControl>
-                </FormGroup> 
+                </FormGroup>  */}
 
                 <FormGroup>
                     <TextField 
@@ -206,6 +209,20 @@ function AddUser() {
                         required 
                     />
                 </FormGroup> 
+                                
+                <FormGroup>
+                    <TextField
+                    label="Salary"
+                    variant="outlined"
+                    placeholder="Enter salary"
+                    fullWidth 
+                    type="number"
+                    margin="normal"
+                    value={enterSalary}
+                    onChange={e=> setEnterSalary(e.target.value)}
+                    required
+                    />
+                </FormGroup>  
                 
                 <FormGroup>
                     <TextField

@@ -2,8 +2,24 @@ import { Button, Container, Grid, TextField } from "@mui/material";
 import img1 from '../assets/img/Count_2.png'
 import img2 from '../assets/img/Home-3.png'
 import { NavLink } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
 
 export const LimitedProducts = () => {
+    function submit (id){
+        confirmAlert({
+          title: "WARNING",
+          message: "Are you sure to delete this user?",
+          buttons: [
+            {
+              label: "Yes",
+            //   onClick: () => deleteUser(id),
+            },
+            {
+              label: "No"
+            }
+          ]
+        })
+      }
 
     return (
         <section className="admin_section">
@@ -49,7 +65,7 @@ export const LimitedProducts = () => {
                                         <NavLink className='btn ' style={{textDecorationLine: 'none', color: "black"}}>
                                             Edit
                                         </NavLink>
-                                        <button className='btn btn-danger'>
+                                        <button className='btn btn-danger'onClick={() => {submit(1)}}>
                                                 Delete
                                         </button> 
                                     </td>
@@ -66,7 +82,7 @@ export const LimitedProducts = () => {
                                         <NavLink className='btn ' style={{textDecorationLine: 'none', color: "black"}}>
                                             Edit
                                         </NavLink>
-                                        <button className='btn btn-danger'>
+                                        <button className='btn btn-danger' onClick={() => {submit(2)}}>
                                                 Delete
                                         </button> 
                                     </td>

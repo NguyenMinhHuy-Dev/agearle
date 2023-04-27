@@ -83,7 +83,7 @@ const Signup = () => {
                                 phoneNumber,
                                 address,
                                 password,
-                                type: 0
+                                type: "0"
                             });
 
                             toast.success("Account created"); 

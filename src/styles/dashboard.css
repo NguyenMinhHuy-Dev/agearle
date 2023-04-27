@@ -1,9 +1,10 @@
 .dashboard_header {
   display: grid;
-  grid-template-columns: 24% 24% 24% 24%;
-  gap: 10px;
+  grid-template-columns: 24% 24% 24% 24%; 
+  justify-content: space-between;
 }
 
+.box,
 .revenue__box,
 .orders__box,
 .products__box,
@@ -19,6 +20,8 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: transform 0.3s ease-in-out;
 }
+
+.box:hover,
 .revenue__box:hover,
 .orders__box:hover,
 .products__box:hover,
@@ -28,6 +31,7 @@
   transition: 0.3s ease-in-out;
 }
 
+.box h5,
 .revenue__box h5,
 .orders__box h5,
 .products__box h5,
@@ -38,6 +42,7 @@
   cursor: default;
 }
 
+.box span,
 .revenue__box span,
 .orders__box span,
 .products__box span,
@@ -55,3 +60,61 @@
   /* background-color: #000; */
 }
 
+.dashboard_chart {
+  /* background-color: #3f51b5; */
+  padding-top: 40px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.line_chart {
+  width: 70%;
+}
+
+.pie_chart {
+  display: flex;
+  align-items: center;
+  width: 28%;
+  height: 100%;
+}
+
+.new_user {
+  width: 24%;
+  height: 100%;
+  background-color: #fff; 
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  justify-content:left;
+  padding: 10px;
+} 
+
+.new_order {
+  width: 73%;
+  height: 100%;
+  padding: 10px 0;
+  justify-content: flex-start;
+}
+
+.new_user ul {
+  width: 90%;  
+}
+
+.new_user li {
+  width: 100%;
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+  margin: 15px 0;
+}
+
+.new_user li .admin__users {
+  width: 35px;
+  height: 35px;
+  margin-right: 15px;
+}
+
+.new_user li span {
+  font-size: 17px;
+  font-weight: 500;
+  color: #000;
+}

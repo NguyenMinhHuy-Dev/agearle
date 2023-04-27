@@ -141,16 +141,20 @@ const Users = () => {
                                         <td>{user.displayName}</td>
                                         <td>{user.email}</td>
                                         <td>{user.phoneNumber}</td>
-                                        <td>{user.type === "0" ? "Customer" : "Admin"}</td>
+                                        <td>{user.type === "0" ? "Customer" : user.type === "3" ? "Employee" : "Admin"}</td>
                                         <td>
-                                            <NavLink to={`/dashboard/edit-user/${user.id}`} className='btn ' style={{textDecorationLine: 'none', color: "black"}}>
-                                                Edit
-                                            </NavLink>
-                                            <button className='btn btn-danger'onClick={()=>{
-                                                submit(user.uid)
-                                            }}>
-                                                Delete
-                                            </button>
+                                            {user.type !== "0" && (
+                                                <>
+                                                    <NavLink to={`/dashboard/edit-user/${user.id}`} className='btn ' style={{textDecorationLine: 'none', color: "black"}}>
+                                                        Edit
+                                                    </NavLink>
+                                                    <button className='btn btn-danger'onClick={()=>{
+                                                        submit(user.uid)
+                                                    }}>
+                                                        Delete
+                                                    </button>
+                                                </>
+                                            )}
                                         </td>
                                     </tr>
                                 ))
