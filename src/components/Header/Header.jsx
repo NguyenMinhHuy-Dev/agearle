@@ -118,7 +118,7 @@ const Header = () => {
                       {sessionStorage.getItem("isLogged") && 
                       <>
                         <div className='user_info'>
-                          {sessionStorage.getItem("typeUser") === "1" && 
+                          {sessionStorage.getItem("typeUser") !== "0" && 
                           <>
                             <a href='/dashboard' className='user-link'>Dashboard</a>
                           </>}
