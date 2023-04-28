@@ -97,7 +97,7 @@ export const AdminNav = () => {
                                 </div>
                             </div>  */}
 
-                            {/* <div className="admin__navigation" ref={menuRef}>
+                            <div className="admin__navigation" ref={menuRef}>
                                 <ul className="admin__menu-list">
                                     {admin__nav.map((item, index) => 
                                         <li className="admin__menu-item" key={index}>
@@ -105,7 +105,7 @@ export const AdminNav = () => {
                                         </li>
                                     )}
                                 </ul>
-                            </div> */}
+                            </div>
                             
                             <div className="nav__icons">
                                 <NavLink >
