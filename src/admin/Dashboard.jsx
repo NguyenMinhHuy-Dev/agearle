@@ -52,7 +52,7 @@ export const Dashboard = () => {
                             <PieChart />
                         </div>
                     </Grid>
-                    <Grid item xs={12} className="dashboard_chart">
+                    <Grid item xs={12} className="dashboard_chart table_2">
                         <div className="new_user box">
                             <h5>NEW USERS</h5>
                             <ul className="new_user_list">

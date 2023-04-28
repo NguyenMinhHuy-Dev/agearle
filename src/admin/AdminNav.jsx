@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Container, Grid } from '@mui/material'; 
+import { Container, Grid, MenuItem } from '@mui/material'; 
 import logo from '../assets/img/logo.png'
 import userIcon from '../assets/img/profile.png'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -63,10 +63,15 @@ export const AdminNav = () => {
         sessionStorage.clear();
     } 
 
+    
+    const menuRef = useRef();
     const handleSearch = e =>{
         const searchTerm = e.target.value;
 
     };
+
+    
+  const menuToggle = () => menuRef.current.classList.toggle('active__menu')
 
     return (
         <>
@@ -92,7 +97,7 @@ export const AdminNav = () => {
                                 </div>
                             </div>  */}
 
-                            <div className="admin__navigation">
+                            {/* <div className="admin__navigation" ref={menuRef}>
                                 <ul className="admin__menu-list">
                                     {admin__nav.map((item, index) => 
                                         <li className="admin__menu-item" key={index}>
@@ -100,7 +105,7 @@ export const AdminNav = () => {
                                         </li>
                                     )}
                                 </ul>
-                            </div>
+                            </div> */}
                             
                             <div className="nav__icons">
                                 <NavLink >
@@ -132,6 +137,10 @@ export const AdminNav = () => {
                                         </div>
                                     </>}
                                 </div> 
+
+                                <div className="mobile_menu">
+                                    <span className='mobile_menu__icon' onClick={menuToggle}><MenuItem/></span>
+                                </div>
                             </div>
                         </div>    
                     </Grid>
