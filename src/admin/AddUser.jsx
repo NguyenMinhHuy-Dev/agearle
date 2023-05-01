@@ -56,7 +56,8 @@ function AddUser() {
                 phoneNumber: enterPhone,
                 address: enterAddress,
                 salary: enterSalary,
-                password: enterPassword
+                password: enterPassword,
+                type: "3" 
             });
 
             updateProfile(user, {

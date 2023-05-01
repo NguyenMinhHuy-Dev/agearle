@@ -4,13 +4,19 @@ import Helmet from '../components/Helmet/Helmet';
 import CommonSection from '../components/UI/CommonSection';
 import {Container, Grid} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import products from '../assets/data/Products';
+// import products from '../assets/data/Products';
 import ProductsList from '../components/UI/ProductsList';
 import "../styles/shop.css";
+import useGetData from '../custom-hooks/useGetData';
 
 const Shop = () => {
     const [selected, setSelected] = useState("");
-    const  [productsData, setProductsData] = useState(products) 
+    const {data:products, loading} = useGetData('products'); 
+    const  [productsData, setProductsData] = useState([]) 
+
+    useEffect(() => {
+        setProductsData(products)
+    }, [loading])
 
     const handleFilter = e =>{
         const filterValue = e.target.value
@@ -19,28 +25,28 @@ const Shop = () => {
         }
         if(filterValue==="Keyboard"){
             const filteredProducts = products.filter(
-                (item) => item.category === "Keyboard"
+                (item) => item.category === "keyboard"
             );
         
              setProductsData(filteredProducts);
             }
             if(filterValue==="Computer Mouse"){
                 const filteredProducts = products.filter(
-                    (item) => item.category === "Computer Mouse"
+                    (item) => item.category === "mouse"
                 );
             
             setProductsData(filteredProducts);
                 }
             if(filterValue==="Headphone"){
                     const filteredProducts = products.filter(
-                        (item) => item.category === "Headphone"
+                        (item) => item.category === "headphone"
                     );
                 
                 setProductsData(filteredProducts);
                     }
             if(filterValue==="Monitor"){
                         const filteredProducts = products.filter(
-                            (item) => item.category === "Monitor"
+                            (item) => item.category === "monitor"
                         );
                     
                     setProductsData(filteredProducts);
@@ -51,12 +57,12 @@ const Shop = () => {
         setSelected(e.target.value);
         const sortPrice = e.target.value
         if(sortPrice === 'ascending'){
-            const sortPriceProduct = productsData.sort((a,b) => a.price - b.price);
+            const sortPriceProduct = productsData.sort((a,b) => parseInt(a.salePrice) - parseInt(b.salePrice));
             setProductsData(sortPriceProduct);
             // console.log(products)
         }
         if(sortPrice === 'descending'){
-            const sortPriceProduct = productsData.sort((a,b) => b.price - a.price);
+            const sortPriceProduct = productsData.sort((a,b) => parseInt(b.salePrice)  - parseInt(a.salePrice));
             setProductsData(sortPriceProduct);
             // console.log(products)
         }

@@ -16,41 +16,48 @@ import Services from '../Services/Services';
 import ProductsList from '../components/UI/ProductsList';
 
 import Clock from '../components/UI/Clock';
-
-// const productLimited = [
-//     {
-//         img: counterImg,
-//         date: 'Apr 27, 2023'
-//     },
-//     {
-//         img: counterImg2,
-//         date: 'Apr 28, 2023'
-//     },
-// ]
+import useGetData from '../custom-hooks/useGetData';
+import { db } from '../config/firebase'
+import { collection, onSnapshot } from 'firebase/firestore'
+import ProductCard from '../components/UI/ProductCard';
+ 
 
 const Home = () => {
+
+    const {data:productData, loading} = useGetData('products'); 
+
     const[trendingProducts, setTrendingProducts] = useState([]);
     const[bestSales, setBestSales] = useState([]);
     const[newArrivals, setNewArrivals] = useState([]);
     const[popular, setPopular] = useState([]);
+ 
 
 
     const year = new Date().getFullYear();
 
-    useEffect(() =>{
-        const filteredTrendingProducts = products.filter((item) => item.title ===  'Trending');
-        const filteredBestSales = products.filter((item) => item.title ===  'BestSales');
-        const filteredNewArrivals = products.filter((item) => item.title ===  'New');
-        const filteredPopular = products.filter((item) => item.title ===  'Popular');
+    useEffect(() => {       
+        const getData = () => {
+            const filteredTrendingProducts = productData.filter((item) => item.title ===  'Trending');
+            const filteredBestSales = productData.filter((item) => item.title ===  'BestSales');
+            const filteredNewArrivals = productData.filter((item) => item.title ===  'New');
+            const filteredPopular = productData .filter((item) => item.title ===  'Popular');
+    
+    
+            setTrendingProducts(filteredTrendingProducts);
+            setBestSales(filteredBestSales);
+            setNewArrivals(filteredNewArrivals);
+            setPopular(filteredPopular);
+        }
+        
+        getData();
 
+    },[loading]);  
 
-        setTrendingProducts(filteredTrendingProducts);
-        setBestSales(filteredBestSales);
-        setNewArrivals(filteredNewArrivals);
-        setPopular(filteredPopular);
+    useEffect(() => {
 
-        // window.scrollTo({top: 0, left: 0, behavior: "smooth"});
-    },[]);
+        window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+    }, [])
+
     return ( 
         <>
         <Helmet title={"Home"}/>
@@ -93,7 +100,7 @@ const Home = () => {
                     <Grid item lg={12} >
                         <h2 className='section__title'>Trending Product</h2>
                     </Grid>
-                    <ProductsList data={trendingProducts}/>
+                    <ProductsList data={trendingProducts}/>  
                 </Grid>
             </Container>
         </section>

@@ -19,10 +19,10 @@ const ProductCard = ({item}) => {
              cartActions.addItem({
              id: item.id,
              productName:item.productName,
-             price: item.price,
+             salePrice: item.salePrice,
              imgUrl: item.imgUrl,
          })
-         );
+         ); 
          toast.success('Product added successfully');
      };
      //
@@ -43,7 +43,7 @@ const ProductCard = ({item}) => {
             </div>
 
             <div className="product__card-bottom">
-                <span className='price'>{item.price.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</span>
+                <span className='price'>{parseInt(item.salePrice).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</span>
                 <motion.span whileTap={{scale: 1.2}} onClick={addToCart} className='icon__plus'><AddOutlinedIcon/></motion.span>
             </div>
 

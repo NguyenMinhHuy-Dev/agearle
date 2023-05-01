@@ -13,6 +13,9 @@ import { useDispatch } from 'react-redux';
 import {cartActions} from "../redux/slices/cartSlice";
 import { toast } from 'react-toastify';
 import Helmet from '../components/Helmet/Helmet';
+import useGetData from '../custom-hooks/useGetData';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
 
 const ProductDetails = () => {
@@ -23,17 +26,45 @@ const ProductDetails = () => {
     const [rating, setRating]= useState(null);
     const {id} = useParams(); 
 
-    const product = products.find((item)=> item.id === parseInt(id));
-    const {imgUrl, productName, price, category, avgRating, reviews, description, shortDesc} = product;
-    const relatedProducts = products.filter(item=> item.category===category)
+    const {data:productData, loading} = useGetData('products');  
 
-    const [productReviews, setProductReviews] = useState(reviews);
+    const [product, setProduct] = useState(null);
+    const [relatedProducts, setRelatedProducts] = useState([]); 
+    // const relatedProducts = products.filter(item=> item.category===category)
 
-    // useEffect(() => {
-    //     setProductReviews(reviews);  
-    // }, [])
+    const [productReviews, setProductReviews] = useState([]);
+
+    const [avgRating, setArgRating] = useState(0);
+
+    useEffect(() => {
+          
+        const productFilter = productData.find((item)=> item.id === id)
+        setProduct(productFilter)   
+        setProductReviews(productFilter?.reviews) 
+        setArgRating(productFilter?.avgRating)
+
+        const productRelated = productData.filter(item => item.category === productFilter.category)
+        setRelatedProducts(productRelated);
+    }, [loading])
+
+    useEffect(() => {
+        var sum = 0;
+        productReviews?.map((item) => {
+            sum = sum + item.rating;
+        })
+        if (productReviews?.length > 0) {
+            setArgRating((sum / productReviews?.length).toFixed(1));
+            const docRef = doc(db, "products", id);
+            updateDoc(docRef, { 
+                avgRating: (sum / productReviews?.length).toFixed(1), 
+            })
+        }
+        else
+            setArgRating(0);
+    }, [productReviews])
+ 
    
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         const reviewUserName = reviewUser.current.value;
         const reviewUserMsg  = reviewMsg.current.value;
@@ -43,18 +74,23 @@ const ProductDetails = () => {
             text: reviewUserMsg,
             rating,
         }; 
-
+ 
         setProductReviews([...productReviews, reviewObj]);
-
         toast.success("Review submited!");
+
+        const docRef = doc(db, "products", id);
+        await updateDoc(docRef, {  
+            reviews: arrayUnion(reviewObj)
+        })
+
     };
 
     const addToCart = () => {
         dispatch(cartActions.addItem({
-            id,
-            image: imgUrl, 
-            productName,
-            price,
+            id: product.id,
+            imgUrl: product.imgUrl, 
+            productName: product.productName,
+            salePrice: product.salePrice,
         }));
         toast.success("Product added successfully");
     };
@@ -64,18 +100,18 @@ const ProductDetails = () => {
     },[product]);
 
     return ( 
-       <div>
-        <Helmet title={productName}/>
-            <CommonSection title={productName}/>
+        <div>
+            <Helmet title={product?.productName}/>
+            <CommonSection title={product?.productName}/>
 
                 <Container>
                     <Grid container className='p-details' columnSpacing={5} alignItems={'center'}>
                         <Grid item lg={6} className='p-img' >
-                            <motion.img whileHover={{scale: .9}} src={imgUrl} alt={productName}></motion.img>
+                            <motion.img whileHover={{scale: .9}} src={product?.imgUrl} alt={product?.productName}></motion.img>
                         </Grid>
                         <Grid item lg={6}>
                             <div className='product__details'>
-                                <h2>{productName}</h2>
+                                <h2>{product?.productName}</h2>
                                 <div className='product__rating'>
                                     <div>
                                         <span><StarIcon/></span>
@@ -87,11 +123,11 @@ const ProductDetails = () => {
                                     <p>(<span>{avgRating}</span> ratings)</p>
                                 </div>
                                 <div className='product__price__container'>
-                                    <span className='product__price'>Price: {price.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</span>
-                                    <span style={{fontSize: "1rem"}}>Category: {category.toUpperCase()}</span>
+                                    <span className='product__price'>Price: {parseInt(product?.salePrice).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</span>
+                                    <span style={{fontSize: "1rem"}}>Category: {product?.category.toUpperCase()}</span>
                                 </div>
                                
-                                <p style={{marginTop: '30px', marginBottom: '30px'}}>{shortDesc}</p>
+                                <p style={{marginTop: '30px', marginBottom: '30px'}}>{product?.shortDesc}</p>
                                 <div>
     
                                     <motion.button whileTap={{scale: 1.2}} 
@@ -112,13 +148,12 @@ const ProductDetails = () => {
 
                                 <h6 className={`${tab==='rev' ? 'active__tab' : ""}`}
                                  onClick={()=> setTab('rev')}>Reviews 
-                                    [{productReviews.length}]
+                                    [{productReviews?.length}]
                                     </h6>
                             </div>
                             {tab === "desc" ? (
                                 <div className='tab__content'>
-                                {/* <p>{description}</p> */}
-                                <img src={description} alt=''></img>
+                                <img src={product?.description} alt=''></img>
                             </div>
                             ) :( 
                                 <div className='product_review'>
@@ -132,7 +167,6 @@ const ProductDetails = () => {
                                                 </li>
                                             ))}
                                         </ul> 
-                                            {/* --------------------------------- */}
                                         <div className='review__form'>
                                             <h4>Leave your experience</h4>
                                             <form onSubmit={submitHandler}>
@@ -182,7 +216,7 @@ const ProductDetails = () => {
                     </Grid>
                 </Container>
             </section>
-            </div>
+        </div>
      
     );
 };

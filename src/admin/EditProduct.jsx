@@ -18,6 +18,7 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
 function EditProducts() {
 
+  const [enterTag, setEnterTag] = useState('');
   const [enterTitle, setEntertitle] = useState('')
   const [enterShortDesc, setEnterShortDesc] = useState('')
   const [enterDescription, setEnterDescription] = useState('')
@@ -54,6 +55,7 @@ function EditProducts() {
                 salePrice : enterSalePrice,
                 quantity: enterQuantity,
                 imgUrl : downloadURL,
+                title: enterTag
               })
             })
           })
@@ -64,18 +66,19 @@ function EditProducts() {
     }
     else {
         await updateDoc(docRef, {
-            productName : enterTitle,
-            shortDesc : enterShortDesc,
-            description : enterDescription,
-            category : enterCategory,
-            importedPrice : enterImportPrice,
-            salePrice : enterSalePrice,
-            quantity: enterQuantity, 
-          })
+          productName : enterTitle,
+          shortDesc : enterShortDesc,
+          description : enterDescription,
+          category : enterCategory,
+          importedPrice : enterImportPrice,
+          salePrice : enterSalePrice,
+          quantity: enterQuantity, 
+          title: enterTag
+        })
           
-          setLoading(false)
-          toast.success("Product Successfully added!!")
-          navigate('/dashboard/all-products'); 
+        setLoading(false)
+        toast.success("Product Successfully added!!")
+        navigate('/dashboard/all-products'); 
     }
  
   }
@@ -84,8 +87,9 @@ function EditProducts() {
     const docRef = doc(db, "products", id);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
+        setEnterTag(docSnap.data().title);
         setEntertitle(docSnap.data().productName);
-        setEnterDescription(docSnap.data().description);
+        setEnterShortDesc(docSnap.data().shortDesc);
         setEnterCategory(docSnap.data().category);
         setEnterImportPrice(docSnap.data().importedPrice);
         setEnterSalePrice(docSnap.data().salePrice);
@@ -154,6 +158,27 @@ function EditProducts() {
                 </FormControl>
               </FormGroup>
 
+              <FormGroup>
+                <FormControl fullWidth margin="normal">
+                  <Select 
+                    variant="outlined"
+                    defaultValue=""
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    value={enterTag}
+                    onChange={e=> setEnterTag(e.target.value)}
+                  >
+                    <MenuItem value="" disabled>
+                      Title
+                    </MenuItem>
+                    <MenuItem value="Trending">Trending</MenuItem>
+                    <MenuItem value="New">New</MenuItem>
+                    <MenuItem value="Popular">Popular</MenuItem>
+                    <MenuItem value="BestSales">BestSales</MenuItem> 
+                  </Select>
+                </FormControl>
+              </FormGroup>
+
               {/* <FormGroup>
                 <TextField
                   label="Short Description"
@@ -169,13 +194,13 @@ function EditProducts() {
 
               <FormGroup>
                 <TextField
-                  label="Description"
+                  label="Short Description"
                   variant="outlined"
                   placeholder="Enter product description"
                   fullWidth
                   margin="normal"
-                  value={enterDescription}
-                  onChange={e=> setEnterDescription(e.target.value)}
+                  value={enterShortDesc}
+                  onChange={e=> setEnterShortDesc(e.target.value)}
                   required
                 />
               </FormGroup>

@@ -13,6 +13,7 @@ import AddSharpIcon from '@mui/icons-material/AddSharp';
 import RemoveTwoToneIcon from '@mui/icons-material/RemoveTwoTone';
 import { confirmAlert } from 'react-confirm-alert';
 import Cart2 from '../Cart_quantity/Cart_quantity';
+
 const Cart = () => {
     const cartItems = useSelector((state) => state.cart.cartItems);
     const totalAmount = useSelector((state)=> state.cart.totalAmount);
@@ -94,7 +95,7 @@ const Tr = ({item})=>{
         id: item.id,
         image: item.imgUrl, 
         productName: item.productName,
-        price: item.price,
+        salePrice: item.salePrice,
     }));
   };
 
@@ -103,7 +104,7 @@ const Tr = ({item})=>{
       id: item.id,
       image: item.imgUrl, 
       productName: item.productName,
-      price: item.price,
+      salePrice: item.salePrice,
   }));
   }
   function submit (){
@@ -129,7 +130,7 @@ const Tr = ({item})=>{
           </Link>
           <TableCell>{item.productName}</TableCell>
           <TableCell style={{textAlign: "center"}}>
-            {item.totalPrice.toLocaleString()}</TableCell>
+            {parseInt(item.totalPrice).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'})}</TableCell>
 
           <TableCell style={{textAlign: "center"}}>
             {item.quantity <=1 ? (

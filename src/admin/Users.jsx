@@ -10,6 +10,7 @@ import AddToQueueIcon from '@mui/icons-material/AddToQueue';
 import { NavLink } from 'react-router-dom';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { confirmAlert } from 'react-confirm-alert';
+import { ExportCSV } from '../actions/ExportExcel';
 
 const Users = () => {
 
@@ -105,10 +106,12 @@ const Users = () => {
                                 <UploadFileIcon className='nav_button_icon'/>
                                 <span>Import</span>
                             </div>
-                            <div className='export_button nav_button'> 
+                            {/* <div className='export_button nav_button'> 
                                 <FileDownloadIcon className='nav_button_icon'/>
                                 <span>Export</span>
-                            </div>
+                            </div> */}
+                
+                            <ExportCSV csvData={usersData} fileName="Users"/>
                             <div className='add_button nav_button'>
                                 <NavLink to='/dashboard/add-user' style={{textDecorationLine: 'none', color: "black"}}>
                                     <AddToQueueIcon className='nav_button_icon'/>

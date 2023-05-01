@@ -21,23 +21,23 @@ const cartSlice = createSlice({
           id: newItem.id,
           productName: newItem.productName,
           imgUrl: newItem.imgUrl,
-          price: newItem.price,
+          salePrice: newItem.salePrice,
           quantity: 1,
-          totalPrice: newItem.price,
+          totalPrice: newItem.salePrice,
         });
        
       }
       else{
         existingItem.quantity++;
         existingItem.totalPrice = 
-            Number(existingItem.totalPrice) + Number(newItem.price);
+            Number(existingItem.totalPrice) + Number(newItem.salePrice);
       }
       state.totalAmount = state.cartItems.reduce((total, item)=> total+
-      Number(item.price)*Number(item.quantity),0
+      Number(item.salePrice)*Number(item.quantity),0
       );
-        console.log(state.totalQuantity);
-        console.log(state.cartItems);
-        console.log(newItem);
+        // console.log(state.totalQuantity);
+        // console.log(state.cartItems);
+        // console.log(newItem);
     },
 
     
@@ -51,7 +51,7 @@ const cartSlice = createSlice({
       }
   
       state.totalAmount = state.cartItems.reduce((total, item)=> total+
-        Number(item.price)*Number(item.quantity),0
+        Number(item.salePrice)*Number(item.quantity),0
       );
     },
 
@@ -76,10 +76,10 @@ const cartSlice = createSlice({
       // }else{
         existingItem.quantity--;
         existingItem.totalPrice = 
-            Number(existingItem.totalPrice) - Number(removeItem.price);
+            Number(existingItem.totalPrice) - Number(removeItem.salePrice);
           // }
         state.totalAmount = state.cartItems.reduce((total, item)=> total+
-        Number(item.price)*Number(item.quantity),0
+        Number(item.salePrice)*Number(item.quantity),0
         );
     },
 

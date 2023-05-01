@@ -7,12 +7,11 @@ import { db } from '../config/firebase';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import SearchIcon from '@mui/icons-material/Search';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import AddToQueueIcon from '@mui/icons-material/AddToQueue';
 import { NavLink } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; 
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-
+import { ExportCSV } from '../actions/ExportExcel'; 
 
 function AllProducts() {
 
@@ -28,6 +27,9 @@ function AllProducts() {
 
     };
 
+    const camelCase = (str) =>  {
+      return str.substring(0, 1).toUpperCase() + str.substring(1);
+    };
     
     function submit (id){
       confirmAlert({
@@ -63,10 +65,8 @@ function AllProducts() {
                     <UploadFileIcon className='nav_button_icon'/>
                     <span>Import</span>
                 </div>
-                <div className='export_button nav_button'> 
-                  <FileDownloadIcon className='nav_button_icon'/>
-                  <span>Export</span>
-                </div>
+                
+                <ExportCSV csvData={productData} fileName="Products"/>
                 <div className='add_button nav_button'>
                   <NavLink to='/dashboard/add-product' style={{textDecorationLine: 'none', color: "black"}}>
                     <AddToQueueIcon className='nav_button_icon'/>
@@ -74,17 +74,19 @@ function AllProducts() {
                   </NavLink>
                 </div>
               </div> 
-            </div>
+            </div> 
 
             <table>
               <thead>
                 <tr>
                   <th>Image</th>
                   <th>Name</th>
+                  <th>Title</th>
                   <th>Category</th>
                   <th>Imoprted Price</th>
                   <th>Sale Price</th>
                   <th>Quantity</th>
+                  <th>Sold</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -100,10 +102,12 @@ function AllProducts() {
                                 <img src={item.imgUrl} className='all-products' />
                             </td>
                             <td>{item.productName}</td>
+                            <td>{item.title}</td>
                             <td>{item.category}</td>
                             <td>{item.importedPrice}</td>
                             <td>{item.salePrice}</td>
                             <td>{item.quantity}</td>
+                            <td>{item.sold}</td>
                             <td>
                                 <NavLink to={`/dashboard/edit-product/${item.id}`} className='btn ' style={{textDecorationLine: 'none', color: "black"}}>
                                     Edit

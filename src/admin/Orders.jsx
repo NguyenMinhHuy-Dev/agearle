@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Grid } from '@mui/material'
 // import '../styles/Orders.css'
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,8 +9,10 @@ import { confirmAlert } from 'react-confirm-alert';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'; 
 import PrintIcon from '@mui/icons-material/Print';
+import { ExportCSV } from '../actions/ExportExcel';
 
 const Orders = () => {
+  const [orders, setOrders] = useState([]);
   
   const handleSearch = e =>{
     const searchTerm = e.target.value;
@@ -41,10 +43,12 @@ const Orders = () => {
                       <SearchIcon/>
                   </span>
                 </div> 
-                <div className='export_button nav_button'> 
+                {/* <div className='export_button nav_button'> 
                   <FileDownloadIcon className='nav_button_icon'/>
                   <span>Export</span>
-                </div> 
+                </div>  */}
+                
+                <ExportCSV csvData={orders} fileName="Orders"/>
               </div> 
             </div>
             <table className='orders-table'>

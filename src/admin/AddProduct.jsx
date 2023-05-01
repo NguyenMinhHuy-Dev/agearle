@@ -55,6 +55,8 @@ function AddProducts() {
             importedPrice : enterImportPrice,
             salePrice : enterSalePrice,
             quantity: enterQuantity,
+            title: "New",
+            sold: "0",
             imgUrl : downloadURL,
           })
         })
@@ -148,13 +150,13 @@ function AddProducts() {
 
               <FormGroup>
                 <TextField
-                  label="Description"
+                  label="Short Description"
                   variant="outlined"
                   placeholder="Enter product description"
                   fullWidth
                   margin="normal"
-                  value={enterDescription}
-                  onChange={e=> setEnterDescription(e.target.value)}
+                  value={enterShortDesc}
+                  onChange={e=> setEnterShortDesc(e.target.value)}
                   required
                 />
               </FormGroup>
