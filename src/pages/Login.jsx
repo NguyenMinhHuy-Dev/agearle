@@ -47,6 +47,8 @@ const Login = () => {
         sessionStorage.setItem("phoneNumber", docSnap.data().phoneNumber);
         sessionStorage.setItem("address", docSnap.data().address); 
         sessionStorage.setItem("typeUser", docSnap.data().type);
+        sessionStorage.setItem("name", docSnap.data().displayName);
+        sessionStorage.setItem("email", docSnap.data().email);
       } 
       else {
         toast.error("Something went wrong! Try again later");
