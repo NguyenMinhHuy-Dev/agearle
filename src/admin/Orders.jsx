@@ -27,8 +27,26 @@ const Orders = () => {
     // console.log(id);
   }
 
-  const handlePrint = () => {
+  const handlePrint = async (id) => {
+    var mywindow = window.open('blank', 'PRINT');
 
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('<style>'); 
+    mywindow.document.write('.bill {width: 800px;min-height: 100px;background-color: #fff;border-radius: 10px;margin: 0 auto;position: relative;text-align: justify;padding: 10px 15px;}');
+    mywindow.document.write('.bill-info {color: #000;font-size: 17px;display: block;}');
+    mywindow.document.write('.bill-info.money {margin-top: 10px;font-size: 19px;text-align: right;}');
+    mywindow.document.write('.line { width: 100%; height: 1px; background-color: #000; margin: 15px 0; }');
+    mywindow.document.write('.bill table {width: 100%; border-collapse: collapse;}');
+    mywindow.document.write('.bill table th,.bill table tr,.bill table td {background-color: #fff;border: 1px solid #000;}  ');
+    mywindow.document.write('</style>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write(document.getElementById(id).innerHTML);
+    mywindow.document.write('</body></html>');
+
+    mywindow.focus();
+    mywindow.print();
+    mywindow.close();
   }
 
   
@@ -88,7 +106,7 @@ const Orders = () => {
                             <ArrowDropDownIcon className='nav_button_icon'/>
                             {/* <span>Detail</span> */}
                           </div>
-                          <div onClick={handlePrint} className='print_button nav_button'>
+                          <div onClick={e => {handlePrint(item.id)}} className='print_button nav_button'>
                             <PrintIcon className='nav_button_icon'/>
                             <span>Print</span>
                           </div>
