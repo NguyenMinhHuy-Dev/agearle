@@ -45,7 +45,7 @@ const Checkout = () => {
                     customerPhone: phone,
                     address,
                     note,
-                    date: new Date(),
+                    date: (new Date()).toString(),
                     status: 'Delivering',
                     items: cartItems,
                     total: totalAmount

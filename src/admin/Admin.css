@@ -214,17 +214,17 @@ ul {
     display: table-cell;
 }
 
-.delivering {
+.Delivering {
     color: #f9ca24;
     font-weight: bold;
 }
 
-.done {
+.Done {
     color: #2ecc71;
     font-weight: bold;
 }
 
-.cancel {
+.Cancel {
     color: #e74c3c;
     font-weight: bold;
 }
