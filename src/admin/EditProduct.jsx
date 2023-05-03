@@ -7,7 +7,8 @@ import {
   FormControl,
   Select,
   MenuItem,
-  Button
+  Button,
+  InputAdornment
 } from '@mui/material'
 import {toast} from 'react-toastify' 
 
@@ -214,7 +215,7 @@ function EditProducts() {
                   margin="normal"
                   type="number"
                   InputProps={{
-                    startAdornment: "$"
+                    endAdornment: <InputAdornment position="end">VND</InputAdornment>,
                   }}
                   value={enterImportPrice}
                   onChange={e=> setEnterImportPrice(e.target.value)}
@@ -230,7 +231,7 @@ function EditProducts() {
                   margin="normal"
                   type="number"
                   InputProps={{
-                    startAdornment: "$"
+                    endAdornment: <InputAdornment position="end">VND</InputAdornment>,
                   }}
                   value={enterSalePrice}
                   onChange={e=> setEnterSalePrice(e.target.value)}

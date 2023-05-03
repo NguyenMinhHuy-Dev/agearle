@@ -7,7 +7,8 @@ import {
   FormControl,
   Select,
   MenuItem,
-  Button
+  Button,
+  InputAdornment
 } from '@mui/material'
 import {toast} from 'react-toastify' 
 
@@ -38,7 +39,7 @@ function AddProducts() {
     // ========= add Product to the firebase ========== 
     try{
 
-      const docRef = await collection(db,'products')
+      const docRef = collection(db,'products')
 
       const storageRef = ref(storage, `prodcutImages/${Date.now() + enterProductImg.name}`)
       const uploadTask = uploadBytesResumable(storageRef,enterProductImg)
@@ -59,12 +60,13 @@ function AddProducts() {
             sold: "0",
             imgUrl : downloadURL,
           })
+        }).then(() => {
+          setLoading(false)
+          toast.success("Product Successfully added!!")
+          navigate('/dashboard/all-products');
         })
       })
       
-      setLoading(false)
-      toast.success("Product Successfully added!!")
-      navigate('/dashboard/all-products');
     } catch(err) {
 
       setLoading(false)
@@ -170,7 +172,7 @@ function AddProducts() {
                   margin="normal"
                   type="number"
                   InputProps={{
-                    startAdornment: "$"
+                    endAdornment: <InputAdornment position="end">VND</InputAdornment>,
                   }}
                   value={enterImportPrice}
                   onChange={e=> setEnterImportPrice(e.target.value)}
@@ -186,7 +188,7 @@ function AddProducts() {
                   margin="normal"
                   type="number"
                   InputProps={{
-                    startAdornment: "$"
+                    endAdornment: <InputAdornment position="end">VND</InputAdornment>,
                   }}
                   value={enterSalePrice}
                   onChange={e=> setEnterSalePrice(e.target.value)}

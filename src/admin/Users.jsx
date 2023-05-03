@@ -106,7 +106,7 @@ const Users = () => {
                                     </MenuItem>
                                     <MenuItem value="2">All</MenuItem> 
                                     <MenuItem value="1">Admin</MenuItem>
-                                    <MenuItem value="3">Employees</MenuItem> 
+                                    <MenuItem value="3">Employee</MenuItem> 
                                     <MenuItem value="0">Customer</MenuItem> 
                                 </Select>
                             </FormControl>

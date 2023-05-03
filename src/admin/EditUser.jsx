@@ -118,11 +118,12 @@ function EditUser() {
                 // type: enterType 
               })
             })
+          }).then(() => {
+            setLoading(false)
+            toast.success("Edit user successful!")
+            navigate('/dashboard/users'); 
           })
           
-          setLoading(false)
-          toast.success("Edit user successful!")
-          navigate('/dashboard/users'); 
     }
     else {
         await updateDoc(docRef, {
