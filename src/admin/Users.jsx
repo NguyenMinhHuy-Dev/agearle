@@ -39,6 +39,13 @@ const Users = () => {
         
             setUsers(filteredUsers)
         }
+        else if (e.target.value === "3") {
+            const filteredUsers = usersData.filter(
+                (item) => item.type === "3"
+            );
+        
+            setUsers(filteredUsers)
+        }
         else {
             const filteredUsers = usersData.filter(
                 (item) => item.type === "0"
@@ -99,6 +106,7 @@ const Users = () => {
                                     </MenuItem>
                                     <MenuItem value="2">All</MenuItem> 
                                     <MenuItem value="1">Admin</MenuItem>
+                                    <MenuItem value="3">Employees</MenuItem> 
                                     <MenuItem value="0">Customer</MenuItem> 
                                 </Select>
                             </FormControl>
