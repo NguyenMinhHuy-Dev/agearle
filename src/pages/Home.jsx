@@ -25,6 +25,7 @@ import ProductCard from '../components/UI/ProductCard';
 const Home = () => {
 
     const {data:productData, loading} = useGetData('products'); 
+    const {data:limtedProducts} = useGetData('limited products'); 
 
     const[trendingProducts, setTrendingProducts] = useState([]);
     const[bestSales, setBestSales] = useState([]);
@@ -50,11 +51,11 @@ const Home = () => {
         }
         
         getData();
-
+        console.log(limtedProducts);
     },[loading]);  
 
     useEffect(() => {
-
+        
         window.scrollTo({top: 0, left: 0, behavior: "smooth"});
     }, [])
 
