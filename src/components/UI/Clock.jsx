@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import '../../styles/Clock.css'
 
-const Clock = ({date}) => {
+const Clock = ({date, title}) => {
 
   const [days,setDays] = useState(0)
   const [hours,setHours] = useState(0)
@@ -54,7 +54,7 @@ const Clock = ({date}) => {
     
       <div className="clock__top-content">
           <h4>Limited Offers</h4>
-          <h3>Quality Headphone</h3>
+          <h3>{title}</h3>
       </div>
       <div className="clock__wrapper">
           <div className="clock__data">

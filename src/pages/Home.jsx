@@ -25,13 +25,15 @@ import ProductCard from '../components/UI/ProductCard';
 const Home = () => {
 
     const {data:productData, loading} = useGetData('products'); 
-    const {data:limtedProducts} = useGetData('limited products'); 
+    const {data:limitedProducts} = useGetData('limited products'); 
 
     const[trendingProducts, setTrendingProducts] = useState([]);
     const[bestSales, setBestSales] = useState([]);
     const[newArrivals, setNewArrivals] = useState([]);
     const[popular, setPopular] = useState([]);
- 
+    const [limitedDate, setLimitedDate] = useState(null); 
+    const [limitedImg, setLimitedImg] = useState(null)
+    const [limitedTitle, setLImitedTitle] = useState(null)
 
 
     const year = new Date().getFullYear();
@@ -48,10 +50,22 @@ const Home = () => {
             setBestSales(filteredBestSales);
             setNewArrivals(filteredNewArrivals);
             setPopular(filteredPopular);
+        } 
+        getData(); 
+
+        const getLimitedProduct = async () => { 
+            const sortedLimitedProducts = limitedProducts.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+            
+            const destination = new Date(sortedLimitedProducts[0].date).getTime(); 
+            
+
+            setLimitedDate(new Date(sortedLimitedProducts[0].date)); 
+            setLimitedImg(sortedLimitedProducts[0].imgUrl);
+            setLImitedTitle(sortedLimitedProducts[0].title);
         }
-        
-        getData();
-        console.log(limtedProducts);
+        getLimitedProduct();
+
     },[loading]);  
 
     useEffect(() => {
@@ -123,7 +137,7 @@ const Home = () => {
                 
                     <Grid item lg={6} md={6} xs={6}>
                         
-                        <Clock date='Apr 27, 2023'/>
+                        <Clock date={limitedDate} title={limitedTitle}/>
 
                         <motion.button whileHover={{scale: 1.2}} className="buy__btn store__btn">
                             <Link to ='/shop'>Visit Store</Link>
@@ -131,7 +145,7 @@ const Home = () => {
                     </Grid>
 
                     <Grid item lg={6} md={6} xs={6} textAlign={'end'}>
-                        <img src={counterImg} alt=''></img>
+                        <img src={limitedImg} alt=''/>
                     </Grid>
                 </Grid>
             </Container>
