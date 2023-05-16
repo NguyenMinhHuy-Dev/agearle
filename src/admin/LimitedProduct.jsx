@@ -25,7 +25,7 @@ export const LimitedProducts = () => {
     function submit (id){
         confirmAlert({
           title: "WARNING",
-          message: "Are you sure to delete this user?",
+          message: "Are you sure to delete this limited product?",
           buttons: [
             {
               label: "Yes",
