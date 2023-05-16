@@ -152,7 +152,7 @@ const Users = () => {
                                         <td>{user.displayName}</td>
                                         <td>{user.email}</td>
                                         <td>{user.phoneNumber}</td>
-                                        <td>{user.type === "0" ? "Customer" : user.type === "3" ? "Employee" : "Admin"}</td>
+                                        <td>{user.type === "0" ? "Customer" : "Admin"}</td>
                                         <td>
                                             {user.type !== "0" && (
                                                 <>
