@@ -154,8 +154,8 @@ const Users = () => {
                                         <td>{user.phoneNumber}</td>
                                         <td>{user.type === "0" ? "Customer" : "Admin"}</td>
                                         <td>
-                                            {user.type !== "0" && (
-                                                <>
+                                            {/* {user.type !== "0" && (
+                                                <> */}
                                                     <NavLink to={`/dashboard/edit-user/${user.id}`} className='btn ' style={{textDecorationLine: 'none', color: "black"}}>
                                                         Edit
                                                     </NavLink>
@@ -164,8 +164,8 @@ const Users = () => {
                                                     }}>
                                                         Delete
                                                     </button>
-                                                </>
-                                            )}
+                                                {/* </>
+                                            )} */}
                                         </td>
                                     </tr>
                                 ))
